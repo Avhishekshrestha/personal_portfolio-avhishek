@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #ffeef2; /* Light pink background for a romantic feel */
+            background: #ffeef2;
             color: #333;
             display: flex;
             justify-content: center;
@@ -22,52 +22,52 @@
 
         .card-container {
             width: 100%;
-            max-width: 360px; /* Adjusted width for better phone simulation */
-            margin: 20px;
-            padding: 10px;
+            max-width: 90vw;
+            margin: 5vw;
+            padding: 2vw;
             background: #fff;
-            border-radius: 15px;
+            border-radius: 3vw;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, #fef4f8, #fce4ec); /* Soft gradient colors */
+            background: linear-gradient(135deg, #fef4f8, #fce4ec);
             box-sizing: border-box;
         }
 
         .swiper-container {
             width: 100%;
-            height: 300px; /* Increased height for photos */
-            margin-bottom: 10px; /* Space between photos and pickup lines */
+            height: 60vw;
+            margin-bottom: 2vw;
         }
 
         .swiper-slide img {
             width: 100%;
-            height: 100%; /* Cover the container height */
+            height: 100%;
             object-fit: cover;
-            border-radius: 10px;
-            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+            border-radius: 2vw;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
         .pickup-lines {
-            font-size: 0.7em; /* Smaller text for better fit */
+            font-size: 1.5vw;
             line-height: 1.3;
-            background: rgba(255, 255, 255, 0.7); /* Lightened background for better readability */
-            padding: 8px;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2vw;
+            border-radius: 3vw;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            color: #333; /* Dark text for better readability */
-            overflow-y: auto; /* Added scroll if content overflows */
-            height: 120px; /* Reduced height for text area */
+            color: #333;
+            overflow-y: auto;
+            height: 20vw;
         }
 
         .pickup-lines p {
-            margin: 6px 0; /* Reduced margin for compact text area */
-            font-weight: normal; /* Normal weight for less emphasis */
+            margin: 1vw 0;
+            font-weight: normal;
             animation: textGlow 3s infinite;
         }
 
         .pickup-lines span {
-            color: #d62839; /* Deep red for a Valentine’s theme */
+            color: #d62839;
             font-weight: bold;
             text-shadow: 0 0 5px #d62839;
         }
@@ -89,43 +89,43 @@
 
         @media (max-width: 768px) {
             .pickup-lines {
-                font-size: 0.6em; /* Further reduced font size for smaller screens */
-                padding: 6px; /* Reduced padding */
-                height: 100px; /* Adjusted height for smaller screens */
+                font-size: 3vw;
+                padding: 3vw;
+                height: 18vw;
             }
 
             .swiper-container {
-                height: 250px; /* Adjusted height for smaller screens */
+                height: 45vw;
             }
         }
 
         @media (max-width: 480px) {
             .card-container {
-                margin: 10px;
-                padding: 8px;
+                margin: 4vw;
+                padding: 2vw;
             }
 
             .swiper-container {
-                height: 200px; /* Further reduced height for very small screens */
+                height: 40vw;
             }
 
             .pickup-lines {
-                font-size: 0.5em; /* Further reduced font size for very small screens */
-                padding: 4px; /* Reduced padding */
-                height: 80px; /* Further reduced height for very small screens */
+                font-size: 4vw;
+                padding: 2vw;
+                height: 15vw;
             }
         }
 
         .swiper-button-next, .swiper-button-prev {
-            color: #d62839; /* Matching button color with theme */
+            color: #d62839;
         }
 
         .swiper-pagination-bullet {
-            background: #d62839; /* Matching pagination color with theme */
+            background: #d62839;
         }
 
         .swiper-pagination-bullet-active {
-            background: #f77f7f; /* Slightly lighter color for active bullet */
+            background: #f77f7f;
         }
     </style>
 </head>
