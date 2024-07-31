@@ -22,40 +22,6 @@
             font-family: Arial, sans-serif;
         }
 
-        .image-side {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 200px;
-            height: 200px;
-            overflow: hidden;
-            z-index: 5;
-        }
-
-        .image-side.left {
-            left: 10px;
-        }
-
-        .image-side.right {
-            right: 10px;
-        }
-
-        .image-side img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border: 2px solid #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            position: absolute;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .image-side img.active {
-            opacity: 1;
-        }
-
         .proposal-container {
             text-align: center;
             background: rgba(255, 255, 255, 0.9);
@@ -65,6 +31,7 @@
             position: relative;
             z-index: 10;
             overflow: hidden;
+            max-width: 500px;
         }
 
         .proposal-container img.proposal-image {
@@ -72,8 +39,9 @@
             box-shadow: 0 0 15px rgba(0,0,0,0.5);
             border: 5px solid #fff;
             transition: transform 0.3s;
-            width: 200px; /* Adjust width if needed */
-            height: 200px; /* Adjust height if needed */
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
         }
 
         .proposal-container img.proposal-image:hover {
@@ -125,7 +93,8 @@
             background: #f1c5cf;
             border-radius: 50%;
             z-index: 5;
-            animation: heart-animation 1.8s infinite;
+            cursor: pointer;
+            animation: heart-bounce 1.5s infinite;
         }
 
         .heart:before,
@@ -147,14 +116,27 @@
             transform-origin: 100% 100%;
         }
 
-        @keyframes heart-animation {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
+        @keyframes heart-bounce {
+            0% {
+                transform: translateY(0);
             }
             50% {
-                transform: scale(1.2);
-                opacity: 0.8;
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heart-glow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 105, 180, 1);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
             }
         }
 
@@ -175,70 +157,76 @@
                 font-size: 1em;
             }
 
-            .image-side {
-                width: 120px;
-                height: 120px;
+            .proposal-container img.proposal-image {
+                width: 150px;
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="image-side left">
-        <img src="images/photos1.jpg" alt="Background Image 1" class="slide">
-        <img src="images/photos2.jpg" alt="Background Image 2" class="slide">
-        <img src="images/photos3.jpg" alt="Background Image 3" class="slide">
-        <img src="images/photos4.jpg" alt="Background Image 4" class="slide">
-    </div>
-
-    <div class="image-side right">
-        <img src="images/photos5.jpg" alt="Background Image 5" class="slide">
-        <img src="images/photos6.jpg" alt="Background Image 6" class="slide">
-        <img src="images/photos7.jpg" alt="Background Image 7" class="slide">
-        <img src="images/photos8.jpg" alt="Background Image 8" class="slide">
-    </div>
-
     <div class="proposal-container">
-        <img src='images/photos1.jpg' class="proposal-image" alt="Proposal Image">
+        <img src="images/photos1.jpg" class="proposal-image" alt="Proposal Image" onclick="nextImage()">
 
-        <div class="heart"></div>
+        <div class="heart" onmousedown="startDrag(event)" onmouseup="endDrag(event)" id="heart"></div>
 
         <h1>Will You Marry Me?</h1>
         <p>You are my everything, my forever, my always. I can't imagine life without you by my side.</p>
-        <p class="heart">💍</p>
         <button onclick="showAnswer('Yes')">Yes</button>
         <button onclick="showAnswer('No')">No</button>
         <div id="answer"></div>
     </div>
 
+    <!-- Removed redundant script imports -->
+
     <script>
-        function showAnswer(answer) {
-            document.getElementById('answer').innerText = `You said "${answer}". I hope it's a YES!`;
+        let currentImageIndex = 1;
+        const totalImages = 8;
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex % totalImages) + 1;
+            const imageElement = document.querySelector('.proposal-image');
+            imageElement.src = `images/photos${currentImageIndex}.jpg`;
         }
 
-        function startSlideshow() {
-            const slides = document.querySelectorAll('.slide');
-            const proposalImage = document.querySelector('.proposal-image');
-            const images = Array.from(slides).map(slide => slide.src);
-            let currentIndex = 0;
+        function showAnswer(answer) {
+            const answerElement = document.getElementById('answer');
+            if (answer === 'Yes') {
+                answerElement.innerHTML = `<p>You said "Yes"! <br>Here’s to a lifetime of love and happiness together. I’ve planned a little surprise for you: <a href="photos-gallery.html" target="_blank">Click here to view our special photos gallery!</a></p>`;
+                window.open('photos-gallery.html', '_blank');
+            } else {
+                answerElement.innerText = `You said "No". I hope we can talk and make things right.`;
+            }
+        }
 
-            function showNextSlide() {
-                slides.forEach((slide, index) => {
-                    slide.classList.remove('active');
-                    if (index === currentIndex) {
-                        slide.classList.add('active');
-                    }
-                });
-                proposalImage.src = images[currentIndex];
-                currentIndex = (currentIndex + 1) % images.length;
+        function startDrag(e) {
+            const heart = e.target;
+            heart.style.position = 'absolute';
+            heart.style.zIndex = 10;
+            heart.style.animation = 'heart-glow 1s infinite';
+
+            function dragMove(event) {
+                heart.style.top = `${event.clientY - heart.offsetHeight / 2}px`;
+                heart.style.left = `${event.clientX - heart.offsetWidth / 2}px`;
             }
 
-            showNextSlide(); // Show the first slide
-            setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+            function dragEnd(event) {
+                document.removeEventListener('mousemove', dragMove);
+                document.removeEventListener('mouseup', dragEnd);
+
+                // Remove heart glow animation after dragging ends
+                heart.style.animation = '';
+
+                // Reset position of the heart if needed
+                heart.style.top = '';
+                heart.style.left = '';
+            }
+
+            document.addEventListener('mousemove', dragMove);
+            document.addEventListener('mouseup', dragEnd);
         }
-
-        window.onload = startSlideshow;
     </script>
-
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
