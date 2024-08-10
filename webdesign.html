@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Services - Personal Portfolio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #f5a623, #f56d6a, #d93d8d, #7b5bff);
+            background-size: 600% 600%;
+            animation: gradientAnimation 20s ease infinite;
+            perspective: 1000px;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff6f61, #dce35b);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            transform: rotateY(10deg);
+            transition: transform 0.5s;
+        }
+
+        header:hover {
+            transform: rotateY(0deg);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            transform: rotateY(-10deg);
+        }
+
+        section:hover {
+            transform: rotateY(0deg);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .intro, .service, .testimonials, .contact-form {
+            border-radius: 15px;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #e0f2f1, #b2dfdb);
+        }
+
+        .service {
+            background: linear-gradient(135deg, #ffe0b2, #ffab91);
+        }
+
+        .testimonials {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, #f1f8e9, #dcedc8);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.8em;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .testimonial {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 5px solid #ffab91;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #ff7043;
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 105, 97, 0.5);
+        }
+
+        .contact-form button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form button:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+            font-size: 0.8em;
+            z-index: 1;
+        }
+
+        #bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+            perspective: 1000px;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            opacity: 0.6;
+            pointer-events: none;
+            transform-style: preserve-3d;
+            animation: bubbleAnimation 15s infinite;
+        }
+
+        @keyframes bubbleAnimation {
+            0% { transform: scale(0.5) translateY(100vh) rotateY(0deg); opacity: 0.6; }
+            50% { transform: scale(1.5) translateY(-50vh) rotateY(360deg); opacity: 0.2; }
+            100% { transform: scale(0.5) translateY(-100vh) rotateY(0deg); opacity: 0.6; }
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            section {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .container {
+                width: 100%;
+                padding: 5px;
+            }
+
+            section {
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Web Design Services</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <h2>Welcome to My Web Design Services</h2>
+            <p>Are you looking for a stunning and effective website that will captivate your audience and drive results? My web design services are tailored to meet your unique needs and goals. From sleek, modern designs to user-friendly interfaces, I provide solutions that not only look great but also perform exceptionally.</p>
+        </section>
+
+        <section class="service">
+            <h2>Custom Website Design</h2>
+            <p>Get a website that is uniquely yours. I create custom designs that reflect your brand's personality and cater to your specific requirements. Whether it's a portfolio site, business website, or e-commerce store, I ensure your website stands out.</p>
+        </section>
+
+        <section class="service">
+            <h2>Responsive Design</h2>
+            <p>In today's mobile-first world, having a responsive website is crucial. I design websites that look and function beautifully across all devices, ensuring a seamless user experience for your visitors.</p>
+        </section>
+
+        <section class="service">
+            <h2>UI/UX Design</h2>
+            <p>Enhance user satisfaction with intuitive and engaging interfaces. My UI/UX design services focus on creating user-centered designs that improve usability and drive conversions.</p>
+        </section>
+
+        <section class="service">
+            <h2>SEO-Friendly Design</h2>
+            <p>Increase your website's visibility on search engines with SEO-friendly design practices. I incorporate SEO best practices into the design process to help your site rank higher and attract more visitors.</p>
+        </section>
+
+        <section class="testimonials">
+            <h2>What Clients Say</h2>
+            <div class="testimonial">
+                <p><strong>Jane Doe:</strong> "The website design exceeded our expectations! It’s not only beautiful but also functional and easy to navigate. Highly recommend!"</p>
+            </div>
+            <div class="testimonial">
+                <p><strong>John Smith:</strong> "Exceptional work! The design is modern and responsive. We’ve seen a significant increase in user engagement since the redesign."</p>
+            </div>
+        </section>
+
+        <section class="contact-form">
+            <h2>Contact Me</h2>
+            <form action="https://formsubmit.co/luffywanted123@gmail.com" method="post" class="bg-light p-4 p-md-5 contact-form">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="Message" id="" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="attachment" accept="image/png, image/jpeg">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="_captcha" value="false">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="_template" value="table">
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <div id="bubbles"></div>
+
+    <footer>
+        &copy; 2024 Web Design Services. All rights reserved.
+        <div class="social-icons">
+            <a href="https://www.facebook.com/stha.avhishek49?mibextid=LQQJ4d" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/stha_avhishek49?igsh=MWt3Z3N2ZnZnNHpjdg%3D%3D&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/avhishekshrest3/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Bubble animation script
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.width = `${Math.random() * 30 + 10}px`;
+            bubble.style.height = bubble.style.width;
+            bubble.style.left = `${Math.random() * 100}vw`;
+            bubble.style.top = `${Math.random() * 100}vh`;
+            bubble.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            bubble.style.transform = `rotateY(${Math.random() * 360}deg)`;
+            document.getElementById('bubbles').appendChild(bubble);
+
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+            });
+        }
+
+        setInterval(createBubble, 300);
+    </script>
+
+</body>
+</html>
