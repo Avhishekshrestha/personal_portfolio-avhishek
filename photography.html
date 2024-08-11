@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+     /* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Fullscreen Background with Enhanced Gradient */
+body {
+    background: linear-gradient(135deg, 
+        #ff7e5f, 
+        #feb47b, 
+        #ff6f61, 
+        #f7797d, 
+        #f9a825, 
+        #e64a19, 
+        #d3c0eb, 
+        #f4a261, 
+        #2a9d8f, 
+        #264653, 
+        #e76f51, 
+        #c9d6ff, 
+        #6a0dad, 
+        #ab83a0, 
+        #6c63ff, 
+        #fcb045, 
+        #ff6f61, 
+        #ff9a8b);
+    background-size: 1200% 1200%;
+    animation: gradientAnimation 40s ease infinite;
+    perspective: 1000px;
+    color: #fff;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Gradient Animation */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* Gallery Hover Effect */
+.gallery img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+    border-radius: 10px;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+    filter: brightness(1.2);
+}
+
+/* Modal Content Image */
+.modal-content img {
+    width: 100%;
+}
+
+/* Bubbles Animation */
+#bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+    perspective: 1000px;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    opacity: 0.6;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    animation: bubbleAnimation 10s infinite;
+}
+
+@keyframes bubbleAnimation {
+    0% { transform: scale(0.5) translateY(100vh) rotateY(0deg); opacity: 0.6; }
+    100% { transform: scale(1) translateY(-100vh) rotateY(360deg); opacity: 0; }
+}
+
+/* Parallax Effect */
+.parallax {
+    background-image: url('photogallery/5.jpg');
+    min-height: 500px; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/* Waterwave Animation */
+.waterwave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.waterwave::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.3) 0%, 
+                rgba(0, 255, 255, 0.3) 25%, 
+                rgba(0, 0, 255, 0.2) 50%, 
+                rgba(0, 255, 0, 0.3) 75%, 
+                rgba(255, 0, 0, 0.3) 100%);
+    border-radius: 50%;
+    animation: waveAnimation 10s linear infinite;
+    transform: scaleX(2) scaleY(1.5);
+}
+
+@keyframes waveAnimation {
+    0% { transform: translateX(-100%) scaleX(2) scaleY(1.5); }
+    100% { transform: translateX(100%) scaleX(2) scaleY(1.5); }
+}
+
+/* Wrapper Animation */
+.wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    animation: wrapperAnimation 5s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes wrapperAnimation {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Additional Hover Effects */
+button, .btn {
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover, .btn:hover {
+    background-color: #ff6f61;
+    transform: scale(1.05);
+}
+
+    </style>    
+</head>
+<body>
+    <div class="bubble"></div>
+    <div class="wrapper"></div>
+    <div class="parallax"></div>
+    <div class="waterwave"></div>
+    <div class="container mt-4">
+        <h1 class="text-center text-white">Photo Gallery</h1>
+        <div class="row gallery">
+            <!-- Photo 1 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/1.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal1" alt="Photo 1">
+                <div class="modal fade" id="photoModal1" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel1" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/1.jpg" alt="Photo 1">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 2 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/2.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal2" alt="Photo 2">
+                <div class="modal fade" id="photoModal2" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel2" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/2.jpg" alt="Photo 2">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 3 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/7.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal3" alt="Photo 3">
+                <div class="modal fade" id="photoModal3" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel3" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/7.DNG" alt="Photo 3">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 4 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/4.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal4" alt="Photo 4">
+                <div class="modal fade" id="photoModal4" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel4" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/4.jpg" alt="Photo 4">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 5 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/5.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal5" alt="Photo 5">
+                <div class="modal fade" id="photoModal5" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel5" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/5.jpg" alt="Photo 5">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 6 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/8.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal6" alt="Photo 6">
+                <div class="modal fade" id="photoModal6" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel6" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/8.DNG" alt="Photo 6">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 7 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/9.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal7" alt="Photo 7">
+                <div class="modal fade" id="photoModal7" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel7" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/9.DNG" alt="Photo 7">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 8 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/10.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal8" alt="Photo 8">
+                <div class="modal fade" id="photoModal8" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel8" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/10.DNG" alt="Photo 8">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 9 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/12.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal9" alt="Photo 9">
+                <div class="modal fade" id="photoModal9" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel9" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/12.DNG" alt="Photo 9">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 10 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/14.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal10" alt="Photo 10">
+                <div class="modal fade" id="photoModal10" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel10" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/14.jpg" alt="Photo 10">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 11 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/15.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal11" alt="Photo 11">
+                <div class="modal fade" id="photoModal11" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel11" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/15.jpg" alt="Photo 11">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 12 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/23.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal12" alt="Photo 12">
+                <div class="modal fade" id="photoModal12" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel12" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/23.jpg" alt="Photo 12">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 13 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/16.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal13" alt="Photo 13">
+                <div class="modal fade" id="photoModal13" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel13" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/16.jpg" alt="Photo 13">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 14 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/17.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal14" alt="Photo 14">
+                <div class="modal fade" id="photoModal14" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel14" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/17.jpg" alt="Photo 14">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 15 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/18.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal15" alt="Photo 15">
+                <div class="modal fade" id="photoModal15" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel15" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/18.jpg" alt="Photo 15">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 16 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/21.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal16" alt="Photo 16">
+                <div class="modal fade" id="photoModal16" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel16" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/21.jpg" alt="Photo 16">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 17 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/20.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal17" alt="Photo 17">
+                <div class="modal fade" id="photoModal17" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel17" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/20.jpg" alt="Photo 17">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 18 -->
+            <div class="col-md-4 mb-4">
+                <img src="photogallery/22.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal18" alt="Photo 18">
+                <div class="modal fade" id="photoModal18" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel18" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="photogallery/22.jpg" alt="Photo 18">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+
+    <div id="bubbles"></div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Bubble animation script
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.width = `${Math.random() * 30 + 10}px`;
+            bubble.style.height = bubble.style.width;
+            bubble.style.left = `${Math.random() * 100}vw`;
+            bubble.style.bottom = `-${bubble.style.height}`;
+            bubble.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            bubble.style.animationDelay = `${Math.random() * 5}s`; // Optional: Add delay to make bubbles appear at different times
+            bubble.style.transform = `rotateY(${Math.random() * 360}deg)`;
+            document.getElementById('bubbles').appendChild(bubble);
+
+            bubble.addEventListener('animationend', () => {
+                bubble.remove();
+            });
+        }
+
+        // Create bubbles at intervals
+        setInterval(createBubble, 500); // Adjust frequency if needed
+    </script>
+</body>
