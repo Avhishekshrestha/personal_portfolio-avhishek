@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg-gradient: linear-gradient(135deg, #f5f5f5, #d4e157);
+            --header-bg-gradient: linear-gradient(135deg, #283593, #3f51b5);
+            --service-bg-gradient: linear-gradient(135deg, #ff8a80, #ff5252);
+            --contact-bg-gradient: linear-gradient(135deg, #c5e1a5, #aed581);
+            --btn-bg-gradient: linear-gradient(135deg, #2196f3, #1976d2);
+            --text-color: #333;
+            --text-color-hover: #ff4081;
+            --border-color: #ddd;
+        }
+
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: var(--primary-bg-gradient);
+            padding-top: 60px; /* space for sticky header */
+        }
+
+        .container {
+            width: 100%;
+            height: 80%;
+            margin: auto;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-style: normal;
+            font-weight: 100;
+            
+        }
+
+        .container1{
+            text-indent: 0%;
+            text-align: left;
+            margin-inline-start: auto;
+            max-width: fit-content;
+            color: #e20cbeeb;
+            margin-bottom: auto;
+            align-self: flex-start;
+            box-shadow: #14dd9a;
+        }
+        
+        /* Header */
+        header {
+            background: var(--header-bg-gradient);
+            color: #dcc215;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            animation: slideInDown 1s ease-out;
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: large;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #14dd9a;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s, transform 0.3s;
+            text-wrap: balance;
+        }
+
+        nav ul li a:hover {
+            color: var(--text-color-hover);
+            transform: scale(1.1);
+        }
+
+        /* Parallax Section */
+        .parallax {
+            background-image: url('photogallery/5.jpg');
+            min-height: 500px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            animation: parallax-animation 30s linear infinite;
+        }
+
+        .overlay {
+            background: rgba(34, 31, 31, 0.5);
+            color: #fafafa;
+            padding: 50px 0;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .service-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: large;
+            text-align: center;
+        }
+
+        .service {
+            flex: 1;
+            margin: 10px;
+            padding: 20px;
+            background: var(--service-bg-gradient);
+            border-radius: 12px;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: zoomIn 1s ease-out;
+        }
+
+        .service:hover {
+            transform: translateY(-10px) rotate(3deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .service h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        /* Portfolio Gallery */
+        .portfolio-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .portfolio-item {
+            flex: 1;
+            margin: 10px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .portfolio-item img:hover {
+            transform: scale(1.1) rotate(3deg);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-item h3 {
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--contact-bg-gradient);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: border 0.3s;
+        }
+
+        .form-control:focus {
+            border: 1px solid var(--btn-bg-gradient);
+        }
+
+        .btn {
+            background: var(--btn-bg-gradient);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #1976d2, #1e88e5);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--header-bg-gradient);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        footer .social-links {
+            margin: 20px 0;
+        }
+
+        footer .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 2.5rem;
+            margin: 0 15px;
+            display: inline-block;
+            transition: background 0.3s, transform 0.3s;
+            padding: 12px;
+            border-radius: 50%;
+            background: #444;
+        }
+
+        footer .social-links a:hover {
+            background: var(--text-color-hover);
+            transform: scale(1.1);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes parallax-animation {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .parallax {
+                min-height: 300px;
+                background-attachment: scroll;
+            }
+
+            .service-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .portfolio-gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Web Development Services</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="parallax">
+        <div class="overlay">
+            <h2>Welcome to Our Web Development Services</h2>
+            <p>Transforming ideas into digital reality</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="services">
+            <h2>Our Services</h2>
+            <div class="service-list">
+                <div class="service">
+                    <i class="fas fa-laptop-code fa-3x"></i>
+                    <h3>Web Design</h3>
+                    <p>Creating visually appealing and user-friendly websites.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-mobile-alt fa-3x"></i>
+                    <h3>Mobile Development</h3>
+                    <p>Building responsive and functional mobile applications.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-chart-line fa-3x"></i>
+                    <h3>SEO Optimization</h3>
+                    <p>Improving your website's visibility on search engines.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <h2>Portfolio</h2>
+            <div class="portfolio-gallery">
+                <div class="portfolio-item">
+                    <img src="photogallery/project1 (1).png" alt="Project 1">
+                    <h3>Project One</h3>
+                </div>
+                <div class="portfolio-item">
+                    <img src="photogallery/project1 (2).png" alt="Project 2">
+                    <h3>Project Two</h3>
+                </div>
+                <div class="portfolio-item">
+                    <img src="photogallery/project1 (3).png" alt="Project 3">
+                    <h3>Project Three</h3>
+                </div>
+            </div>
+        </section>
+        <div class="container1">
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <div class="row no-gutters block-9">
+                <div class="col-md-6 order-md-last d-flex">
+                  <form action="https://formsubmit.co/luffywanted123@gmail.com" method="post" class="bg-light p-4 p-md-5 contact-form">
+                      <form action="https://formsubmit.co/your-random-string" method="POST">
+                    <div class="form-group">
+                      <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" name="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                      <textarea name="Message" id="" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <input type="file" name="attachment" accept="image/png, image/jpeg">
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                    </div>
+                    <div class="form-group">
+                    <input type="hidden" name="_captcha" value="false">
+                  </div>
+                  <div class="form-group">
+                      <input type="hidden" name="_template" value="table">
+                  </div>
+                  </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.facebook.com/stha.avhishek49?mibextid=LQQJ4d" class="fab fa-facebook-f"></a>
+                <a href="https://www.instagram.com/stha_avhishek49?igsh=MWt3Z3N2ZnZnNHpjdg%3D%3D&utm_source=qr" class="fab fa-instagram"></a>
+                <a href="https://x.com/avhishekshrest3/" class="fab fa-twitter"></a>
+            </div>
+            <p>&copy; 2024 Web Development Services. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
