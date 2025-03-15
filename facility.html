@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities Navbar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .facilities-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 14px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .dropbtn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .facilities-dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            color: #2c3e50;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #3498db;
+            padding-left: 20px;
+        }
+
+        .dropdown-content a::before {
+            content: "→";
+            margin-right: 8px;
+            color: #3498db;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover::before {
+            opacity: 1;
+        }
+
+        /* Add some icons using pseudo-elements */
+        .library::after {
+            content: "📚";
+            margin-left: 8px;
+        }
+
+        .computerlab::after {
+            content: "💻";
+            margin-left: 8px;
+        }
+
+        .canteen::after {
+            content: "🍽️";
+            margin-left: 8px;
+        }
+
+        .hostel::after {
+            content: "🏠";
+            margin-left: 8px;
+        }
+
+        .transportation::after {
+            content: "🚍";
+            margin-left: 8px;
+        }
+
+        .sciencelab::after {
+            content: "🔬";
+            margin-left: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dropbtn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .dropdown-content {
+                min-width: 160px;
+            }
+
+            .dropdown-content a {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="facilities-dropdown">
+                <button class="dropbtn">Facilities ▼</button>
+                <div class="dropdown-content">
+                    <a href="#library" class="library">Library</a>
+                    <a href="#computerlab" class="computerlab">Computer Lab</a>
+                    <a href="#canteen" class="canteen">Canteen</a>
+                    <a href="#hostel" class="hostel">Hostel</a>
+                    <a href="#transportation" class="transportation">Transportation</a>
+                    <a href="#sciencelab" class="sciencelab">Science Lab</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
