@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Photo Gallery | My Photography</title>
-    <meta name="description" content="Explore the finest photographic work by [Your Name], showcasing stunning landscapes, portraits, and more.">
-    <meta name="keywords" content="photography, portfolio, professional photographer, [Your Name], gallery">
-    <meta name="author" content="[Your Name]">
+    <title>Professional Photo Gallery | Avhishek Shrestha</title>
+    <meta name="description" content="Explore the finest photographic work by Avhishek Shrestha, showcasing stunning landscapes, portraits, and more.">
+    <meta name="keywords" content="photography, portfolio, professional photographer, Avhishek Shrestha, gallery">
+    <meta name="author" content="Avhishek Shrestha">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Professional Photo Gallery | My Photography">
-    <meta property="og:description" content="Discover breathtaking photography by [Your Name]. Explore landscapes, portraits, and more.">
+    <meta property="og:title" content="Professional Photo Gallery | Avhishek Shrestha">
+    <meta property="og:description" content="Discover breathtaking photography by Avhishek Shrestha. Explore landscapes, portraits, and more.">
     <meta property="og:image" content="photogallery/5.jpg">
     <meta property="og:url" content="https://www.myphotography.com">
     <meta name="twitter:card" content="summary_large_image">
@@ -24,19 +24,20 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght \
-
-@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <!-- Custom CSS -->
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --text-color: #333;
-            --text-light: #7f8c8d;
+            --primary-color: #1a252f;
+            --secondary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --light-color: #f5f6f5;
+            --dark-color: #1a252f;
+            --text-color: #2d3436;
+            --text-light: #636e72;
         }
 
         /* Base Styles */
@@ -45,10 +46,10 @@
         }
 
         body {
-            font-family: 'Raleway', sans-serif;
+            font-family: 'Poppins', sans-serif;
             color: var(--text-color);
-            background-color: #f9f9f9;
-            line-height: 1.6;
+            background-color: var(--light-color);
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
@@ -60,102 +61,118 @@
         /* Navigation */
         .navbar {
             background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             padding: 15px 0;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .navbar.scrolled {
             padding: 10px 0;
-            background-color: rgba(255, 255, 255, 0.98);
+            background-color: rgba(255, 255, 255, 1);
         }
 
         .navbar-brand {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--primary-color);
         }
 
         .nav-link {
-            font-weight: 600;
+            font-weight: 500;
             color: var(--dark-color);
-            margin: 0 10px;
+            margin: 0 15px;
             position: relative;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
-        .nav-link:after {
+        .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
             background: var(--accent-color);
-            bottom: 0;
+            bottom: -5px;
             left: 0;
             transition: width 0.3s ease;
         }
 
-        .nav-link:hover:after,
-        .nav-link.active:after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
             width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('photogallery/5.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('photogallery/5.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 80vh;
+            height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             position: relative;
-            margin-bottom: 60px;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             padding: 0 20px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            font-size: 4rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .btn-primary {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            background: var(--accent-color);
+            border: none;
+        }
+
+        .hero .btn-primary:hover {
+            background: #d35400;
+            transform: translateY(-5px);
         }
 
         /* Gallery Section */
         .gallery-section {
-            padding: 80px 0;
+            padding: 100px 0;
+            background: white;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: var(--primary-color);
             position: relative;
             display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
         }
 
-        .section-title h2:after {
+        .section-title h2::after {
             content: '';
             position: absolute;
-            width: 60px;
-            height: 3px;
+            width: 80px;
+            height: 4px;
             background: var(--accent-color);
             bottom: 0;
             left: 50%;
@@ -164,42 +181,43 @@
 
         .section-title p {
             color: var(--text-light);
-            max-width: 700px;
-            margin: 15px auto 0;
+            max-width: 800px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
         }
 
         /* Gallery Grid */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transition: all 0.4s ease;
+            aspect-ratio: 4 / 3;
             cursor: pointer;
         }
 
         .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .gallery-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
 
         .gallery-item:hover .gallery-img {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .gallery-overlay {
@@ -208,12 +226,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
         }
 
         .gallery-item:hover .gallery-overlay {
@@ -227,16 +245,22 @@
         }
 
         .gallery-overlay-content i {
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .gallery-overlay-content h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
         /* Modal Styles */
         .modal-content {
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             background: #fff;
+            overflow: hidden;
         }
 
         .modal-body {
@@ -246,30 +270,41 @@
         .modal-img {
             width: 100%;
             height: auto;
-            border-radius: 8px 8px 0 0;
+            border-radius: 12px 12px 0 0;
         }
 
         .modal-header {
             border: none;
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px;
+            right: 15px;
             z-index: 1;
         }
 
         .modal-footer {
             background: #fff;
-            border-radius: 0 0 8px 8px;
-            padding: 15px;
+            border-radius: 0 0 12px 12px;
+            padding: 20px;
             text-align: center;
+            border-top: none;
+        }
+
+        .modal-footer h5 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+        }
+
+        .modal-footer p {
+            color: var(--text-light);
+            margin: 10px 0 0;
         }
 
         .btn-close {
             background: none;
             color: white;
-            font-size: 1.5rem;
-            opacity: 0.8;
-            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+            font-size: 1.8rem;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.6));
         }
 
         .btn-close:hover {
@@ -278,27 +313,32 @@
 
         /* About Section */
         .about-section {
-            padding: 80px 0;
-            background-color: white;
+            padding: 100px 0;
+            background: var(--light-color);
         }
 
         .about-content {
             display: flex;
             align-items: center;
-            gap: 50px;
+            gap: 60px;
         }
 
         .about-img {
             flex: 1;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
         }
 
         .about-img img {
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.1);
         }
 
         .about-text {
@@ -306,85 +346,140 @@
         }
 
         .about-text h3 {
-            font-size: 2rem;
+            font-size: 2.3rem;
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .about-text p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .about-text .btn-primary {
+            padding: 12px 35px;
+            border-radius: 50px;
         }
 
         /* Contact Section */
         .contact-section {
-            padding: 80px 0;
-            background-color: var(--light-color);
+            padding: 100px 0;
+            background: white;
         }
 
         .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: var(--light-color);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .form-control {
-            height: 50px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            transition: border-color 0.3s ease;
+            height: 55px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-control:focus {
             border-color: var(--accent-color);
-            box-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
+            box-shadow: 0 0 8px rgba(230, 126, 34, 0.3);
         }
 
         textarea.form-control {
-            height: 150px;
+            height: 180px;
         }
 
         .btn-primary {
             background-color: var(--accent-color);
             border: none;
-            padding: 12px 30px;
+            padding: 14px 40px;
             font-weight: 600;
+            border-radius: 50px;
             transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            background-color: #c0392b;
-            transform: translateY(-3px);
+            background-color: #d35400;
+            transform: translateY(-5px);
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-right: 20px;
+        }
+
+        .contact-text h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .contact-text p, .contact-text a {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px);
         }
 
         /* Footer */
         .footer {
             background-color: var(--dark-color);
             color: white;
-            padding: 60px 0 20px;
+            padding: 80px 0 30px;
         }
 
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
             display: inline-block;
         }
 
         .footer-links h4 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
 
-        .footer-links h4:after {
+        .footer-links h4::after {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 2px;
+            width: 50px;
+            height: 3px;
             background: var(--accent-color);
             bottom: 0;
             left: 0;
@@ -396,12 +491,13 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            color: #bdc3c7;
+            color: #dfe6e9;
             transition: color 0.3s ease;
+            font-size: 1rem;
         }
 
         .footer-links a:hover {
@@ -409,50 +505,32 @@
             text-decoration: none;
         }
 
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            color: white;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--accent-color);
-            transform: translateY(-3px);
-        }
-
         .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 30px;
+            margin-top: 50px;
             text-align: center;
-            color: #bdc3c7;
-            font-size: 0.9rem;
+            color: #b2bec3;
+            font-size: 0.95rem;
         }
 
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
             background: var(--accent-color);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             z-index: 999;
         }
 
@@ -462,8 +540,8 @@
         }
 
         .back-to-top:hover {
-            background: #c0392b;
-            transform: translateY(-5px);
+            background: #d35400;
+            transform: translateY(-6px);
         }
 
         /* Loading Animation */
@@ -473,23 +551,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: white;
+            background: var(--dark-color);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s ease;
         }
 
         .loader {
-            width: 48px;
-            height: 48px;
-            border: 5px solid var(--light-color);
+            width: 60px;
+            height: 60px;
+            border: 6px solid var(--light-color);
             border-bottom-color: var(--accent-color);
             border-radius: 50%;
-            display: inline-block;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
+            animation: rotation 1.2s linear infinite;
         }
 
         @keyframes rotation {
@@ -500,7 +576,7 @@
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
             
             .about-content {
@@ -508,32 +584,36 @@
             }
             
             .about-img {
-                margin-bottom: 30px;
+                margin-bottom: 40px;
+            }
+            
+            .contact-form {
+                padding: 30px;
             }
         }
 
         @media (max-width: 768px) {
             .hero {
-                height: 60vh;
+                height: 70vh;
                 background-attachment: scroll;
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
         }
 
         @media (max-width: 576px) {
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .gallery-grid {
@@ -543,36 +623,11 @@
             .contact-form {
                 padding: 20px;
             }
-        }
-
-        /* Animation Classes */
-        .fade-in {
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .slide-up {
-            animation: slideUp 0.8s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
+            
+            .footer-logo {
+                font-size: 1.8rem;
             }
         }
-
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
@@ -610,9 +665,9 @@
     <!-- Hero Section -->
     <section class="hero" id="home" role="banner">
         <div class="hero-content">
-            <h1 class="fade-in">Capturing Life's Beautiful Moments</h1>
-            <p class="fade-in delay-1">A visual journey through my lens, showcasing the world's hidden beauty and fleeting moments.</p>
-            <a href="#gallery" class="btn btn-primary btn-lg fade-in delay-2" role="button">View Gallery</a>
+            <h1 class="animate-hero">Capturing Life's Beautiful Moments</h1>
+            <p class="animate-hero">A visual journey through my lens, showcasing the world's hidden beauty and fleeting moments.</p>
+            <a href="#gallery" class="btn btn-primary animate-hero" role="button">View Gallery</a>
         </div>
     </section>
 
@@ -620,13 +675,13 @@
     <section class="gallery-section" id="gallery">
         <div class="container">
             <div class="section-title">
-                <h2 class="slide-up">My Photography</h2>
-                <p class="slide-up delay-1">Each image tells a unique story, captured with passion and precision.</p>
+                <h2 class="animate-section">My Photography</h2>
+                <p class="animate-section">Each image tells a unique story, captured with passion and precision.</p>
             </div>
             
             <div class="gallery-grid" role="grid">
                 <!-- Photo 1 -->
-                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal1" role="button" aria-label="View Nature Photography">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal1" role="button" aria-label="View Nature Photography">
                     <img src="photogallery/1.jpg" alt="Nature Photography" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -637,7 +692,7 @@
                 </div>
                 
                 <!-- Photo 2 -->
-                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal2" role="button" aria-label="View Urban Landscape">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal2" role="button" aria-label="View Urban Landscape">
                     <img src="photogallery/2.jpg" alt="Urban Landscape" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -648,7 +703,7 @@
                 </div>
                 
                 <!-- Photo 3 -->
-                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal3" role="button" aria-label="View Portrait Photography">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal3" role="button" aria-label="View Portrait Photography">
                     <img src="photogallery/3.jpg" alt="Portrait Photography" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -659,7 +714,7 @@
                 </div>
                 
                 <!-- Photo 4 -->
-                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal4" role="button" aria-label="View Wildlife Shot">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal4" role="button" aria-label="View Wildlife Shot">
                     <img src="photogallery/4.jpg" alt="Wildlife Shot" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -670,7 +725,7 @@
                 </div>
                 
                 <!-- Photo 5 -->
-                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal5" role="button" aria-label="View Mountain Landscape">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal5" role="button" aria-label="View Mountain Landscape">
                     <img src="photogallery/5.jpg" alt="Mountain Landscape" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -681,7 +736,7 @@
                 </div>
                 
                 <!-- Photo 6 -->
-                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal6" role="button" aria-label="View Street Photography">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal6" role="button" aria-label="View Street Photography">
                     <img src="photogallery/14.jpg" alt="Street Photography" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -692,7 +747,7 @@
                 </div>
                 
                 <!-- Photo 7 -->
-                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal7" role="button" aria-label="View Abstract Art">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal7" role="button" aria-label="View Abstract Art">
                     <img src="photogallery/15.jpg" alt="Abstract Art" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -703,7 +758,7 @@
                 </div>
                 
                 <!-- Photo 8 -->
-                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal8" role="button" aria-label="View Night Photography">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal8" role="button" aria-label="View Night Photography">
                     <img src="photogallery/16.jpg" alt="Night Photography" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -714,7 +769,7 @@
                 </div>
                 
                 <!-- Photo 9 -->
-                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal9" role="button" aria-label="View Macro Photography">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal9" role="button" aria-label="View Macro Photography">
                     <img src="photogallery/17.jpg" alt="Macro Photography" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -725,7 +780,7 @@
                 </div>
                 
                 <!-- Photo 10 -->
-                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal10" role="button" aria-label="View Seascape">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal10" role="button" aria-label="View Seascape">
                     <img src="photogallery/18.jpg" alt="Seascape" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -736,7 +791,7 @@
                 </div>
                 
                 <!-- Photo 11 -->
-                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal11" role="button" aria-label="View Architecture">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal11" role="button" aria-label="View Architecture">
                     <img src="photogallery/19.jpg" alt="Architecture" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -747,7 +802,7 @@
                 </div>
                 
                 <!-- Photo 12 -->
-                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal12" role="button" aria-label="View Travel Photography">
+                <div class="gallery-item animate-gallery" data-bs-toggle="modal" data-bs-target="#photoModal12" role="button" aria-label="View Travel Photography">
                     <img src="photogallery/23.jpg" alt="Travel Photography" class="gallery-img" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
@@ -764,15 +819,15 @@
     <section class="about-section" id="about">
         <div class="container">
             <div class="section-title">
-                <h2 class="slide-up">About The Artist</h2>
-                <p class="slide-up delay-1">Discover the story behind the lens</p>
+                <h2 class="animate-section">About The Artist</h2>
+                <p class="animate-section">Discover the story behind the lens</p>
             </div>
             
             <div class="about-content">
-                <div class="about-img slide-up">
+                <div class="about-img animate-about">
                     <img src="photogallery/16.jpg" alt="Photographer at work" loading="lazy">
                 </div>
-                <div class="about-text slide-up delay-1">
+                <div class="about-text animate-about">
                     <h3>Hi, I'm Avhishek Shrestha</h3>
                     <p>With over 8 years of professional photography experience, I specialize in capturing the essence of moments that tell compelling visual stories. My journey began with a simple point-and-shoot camera and has evolved into a lifelong passion for visual storytelling.</p>
                     <p>My work has been featured in several exhibitions and publications, and I've had the privilege of working with clients ranging from international brands to local businesses. What drives me is the ability to freeze time - to capture emotions, landscapes, and moments that would otherwise be lost to memory.</p>
@@ -787,48 +842,83 @@
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="section-title">
-                <h2 class="slide-up">Get In Touch</h2>
-                <p class="slide-up delay-1">Let's create something beautiful together</p>
+                <h2 class="animate-section">Get In Touch</h2>
+                <p class="animate-section">Let's create something beautiful together</p>
             </div>
             
             <div class="row">
-                <div class="col-lg-6 slide-up">
+                <div class="col-lg-6 animate-contact">
                     <div class="contact-info mb-5">
-                        <h4>Contact Information</h4>
-                        <p><i class="fas fa-map-marker-alt me-2"></i> 123 Photography Street, Creative City</p>
-                        <p><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</p>
-                        <p><i class="fas fa-envelope me-2"></i> contact@myphotography.com</p>
-                        
-                        <div class="social-links mt-4">
-                            <a href="https://facebook.com/yourprofile" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                           
+                        <h3>Let's Talk About Your Project</h3>
+                        <div class="contact-details">
+                            <div class="contact-item d-flex mb-3">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Location</h4>
+                                    <p>Chitwan-Tandi, Nepal</p>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex mb-3">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <a href="mailto:luffywanted123@gmail.com">luffywanted123@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex mb-3">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Phone</h4>
+                                    <a href="tel:+9779844335249">+977 9844335249</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Follow Me</h3>
+                        <div class="social-links mt-3">
+                            <a href="https://www.facebook.com/stha.avhishek49?mibextid=LQQJ4d" class="social-link me-3" target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://x.com/avhishekshrest3/" class="social-link me-3" target="_blank" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/stha_avhishek49?igsh=MWt3Z3N2ZnZnNHpjdg%3D%3D&utm_source=qr" class="social-link me-3" target="_blank" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://linkedin.com" class="social-link" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-lg-6 slide-up delay-1">
+                <div class="col-lg-6 animate-contact">
                     <div class="contact-form">
                         <h4 class="mb-4">Send Me a Message</h4>
-                        <form id="contactForm" novalidate>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="name" placeholder="Your Name" required aria-label="Your Name">
-                                <div class="invalid-feedback">Please enter your name.</div>
+                        <form action="https://formsubmit.co/luffywanted123@gmail.com" method="POST" enctype="multipart/form-data" id="contactForm">
+                            <div class="mb-3 form-group">
+                                <input type="text" name="name" class="form-control" placeholder="Your Name" required aria-label="Your Name">
                             </div>
-                            <div class="mb-3">
-                                <input type="email" class="form-control" id="email" placeholder="Your Email" required aria-label="Your Email">
-                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            <div class="mb-3 form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Your Email" required aria-label="Your Email">
                             </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="subject" placeholder="Subject" aria-label="Subject">
+                            <div class="mb-3 form-group">
+                                <input type="text" name="subject" class="form-control" placeholder="Subject" required aria-label="Subject">
                             </div>
-                            <div class="mb-3">
-                                <textarea class="form-control" id="message" placeholder="Your Message" required aria-label="Your Message"></textarea>
-                                <div class="invalid-feedback">Please enter your message.</div>
+                            <div class="mb-3 form-group">
+                                <textarea name="message" class="form-control" placeholder="Your Message" required aria-label="Your Message"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Send Message</button>
+                            <div class="mb-3 form-group">
+                                <input type="file" name="attachment" class="form-control" accept="image/png, image/jpeg">
+                            </div>
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
                         </form>
                     </div>
                 </div>
@@ -885,7 +975,7 @@
             </div>
             
             <div class="copyright">
-                <p>© 2025 My Photography. All Rights Reserved. | Designed with passion by [Your Name]</p>
+                <p>© 2025 Avhishek Shrestha. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -894,7 +984,6 @@
     <a href="#" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
 
     <!-- Photo Modals -->
-    <!-- Modal 1 -->
     <div class="modal fade" id="photoModal1" tabindex="-1" aria-labelledby="photoModal1Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -912,7 +1001,6 @@
         </div>
     </div>
     
-    <!-- Modal 2 -->
     <div class="modal fade" id="photoModal2" tabindex="-1" aria-labelledby="photoModal2Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -930,7 +1018,6 @@
         </div>
     </div>
     
-    <!-- Modal 3 -->
     <div class="modal fade" id="photoModal3" tabindex="-1" aria-labelledby="photoModal3Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -948,7 +1035,6 @@
         </div>
     </div>
     
-    <!-- Modal 4 -->
     <div class="modal fade" id="photoModal4" tabindex="-1" aria-labelledby="photoModal4Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -966,7 +1052,6 @@
         </div>
     </div>
     
-    <!-- Modal 5 -->
     <div class="modal fade" id="photoModal5" tabindex="-1" aria-labelledby="photoModal5Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -984,7 +1069,6 @@
         </div>
     </div>
     
-    <!-- Modal 6 -->
     <div class="modal fade" id="photoModal6" tabindex="-1" aria-labelledby="photoModal6Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1002,7 +1086,6 @@
         </div>
     </div>
     
-    <!-- Modal 7 -->
     <div class="modal fade" id="photoModal7" tabindex="-1" aria-labelledby="photoModal7Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1020,7 +1103,6 @@
         </div>
     </div>
     
-    <!-- Modal 8 -->
     <div class="modal fade" id="photoModal8" tabindex="-1" aria-labelledby="photoModal8Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1038,7 +1120,6 @@
         </div>
     </div>
     
-    <!-- Modal 9 -->
     <div class="modal fade" id="photoModal9" tabindex="-1" aria-labelledby="photoModal9Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1056,7 +1137,6 @@
         </div>
     </div>
     
-    <!-- Modal 10 -->
     <div class="modal fade" id="photoModal10" tabindex="-1" aria-labelledby="photoModal10Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1074,7 +1154,6 @@
         </div>
     </div>
     
-    <!-- Modal 11 -->
     <div class="modal fade" id="photoModal11" tabindex="-1" aria-labelledby="photoModal11Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1092,7 +1171,6 @@
         </div>
     </div>
     
-    <!-- Modal 12 -->
     <div class="modal fade" id="photoModal12" tabindex="-1" aria-labelledby="photoModal12Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1117,15 +1195,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-4G1N1Mh/4bC4yJse0h2eSSfC4O76F71Qv4s4D2Jo0p3T2ZKy0XJnp0RRz7MhSumo0i7n9afvS1Ye4WOL9f5z3Eg==" crossorigin="anonymous"></script>
     <!-- Custom JavaScript -->
     <script>
-        // Loader
+        // Loader Animation
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             setTimeout(() => {
                 loader.style.opacity = '0';
                 setTimeout(() => {
                     loader.style.display = 'none';
-                }, 500);
-            }, 1000);
+                }, 600);
+            }, 1200);
         });
 
         // Navbar Scroll Effect
@@ -1148,10 +1226,79 @@
             }
         });
 
-        // Smooth Scroll for Nav Links
+        // Smooth Scroll
         const scroll = new SmoothScroll('a[href*="#"]', {
-            speed: 800,
+            speed: 1000,
             speedAsDuration: true
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Section Animations
+        gsap.from('.animate-hero', {
+            opacity: 0,
+            y: 50,
+            duration: 1.2,
+            stagger: 0.3,
+            ease: 'power3.out'
+        });
+
+        // Section Title Animations
+        gsap.utils.toArray('.animate-section').forEach(element => {
+            gsap.from(element, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // Gallery Item Animations
+        gsap.utils.toArray('.animate-gallery').forEach((item, index) => {
+            gsap.from(item, {
+                opacity: 0,
+                y: 70,
+                duration: 1,
+                delay: index * 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // About Section Animations
+        gsap.from('.animate-about', {
+            opacity: 0,
+            x: (index) => index % 2 === 0 ? -100 : 100,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.about-content',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        });
+
+        // Contact Section Animations
+        gsap.from('.animate-contact', {
+            opacity: 0,
+            x: (index) => index % 2 === 0 ? -100 : 100,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.contact-section',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
         });
 
         // Form Validation
