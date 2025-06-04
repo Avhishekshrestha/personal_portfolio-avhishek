@@ -3,534 +3,1187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Gallery</title>
+    <title>Professional Photo Gallery | My Photography</title>
+    <meta name="description" content="Explore the finest photographic work by [Your Name], showcasing stunning landscapes, portraits, and more.">
+    <meta name="keywords" content="photography, portfolio, professional photographer, [Your Name], gallery">
+    <meta name="author" content="[Your Name]">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Professional Photo Gallery | My Photography">
+    <meta property="og:description" content="Discover breathtaking photography by [Your Name]. Explore landscapes, portraits, and more.">
+    <meta property="og:image" content="photogallery/5.jpg">
+    <meta property="og:url" content="https://www.myphotography.com">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght \
+
+@300;400;600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
-     /* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Fullscreen Background with Enhanced Gradient */
-body {
-    background: linear-gradient(135deg, 
-        #ff7e5f, 
-        #feb47b, 
-        #ff6f61, 
-        #f7797d, 
-        #f9a825, 
-        #e64a19, 
-        #d3c0eb, 
-        #f4a261, 
-        #2a9d8f, 
-        #264653, 
-        #e76f51, 
-        #c9d6ff, 
-        #6a0dad, 
-        #ab83a0, 
-        #6c63ff, 
-        #fcb045, 
-        #ff6f61, 
-        #ff9a8b);
-    background-size: 1200% 1200%;
-    animation: gradientAnimation 40s ease infinite;
-    perspective: 1000px;
-    color: #fff;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-}
-.container{
-    color: #ffffff;
-    text-align: center;
-    max-resolution: absolute;
-    font-size: larger;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: bold;
-}
-
-/* Gradient Animation */
-@keyframes gradientAnimation {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
-}
-
-/* Gallery Hover Effect */
-.gallery img {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-    border-radius: 10px;
-}
-
-.gallery img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-    filter: brightness(1.2);
-}
-
-/* Modal Content Image */
-.modal-content img {
-    width: 100%;
-}
-
-/* Bubbles Animation */
-#bubbles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: -1;
-    perspective: 1000px;
-}
-
-.bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.7);
-    opacity: 0.6;
-    pointer-events: none;
-    transform-style: preserve-3d;
-    animation: bubbleAnimation 10s infinite;
-}
-
-@keyframes bubbleAnimation {
-    0% { transform: scale(0.5) translateY(100vh) rotateY(0deg); opacity: 0.6; }
-    100% { transform: scale(1) translateY(-100vh) rotateY(360deg); opacity: 0; }
-}
-
-/* Parallax Effect */
-.parallax {
-    background-image: url('photogallery/5.jpg');
-    min-height: 500px; 
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-/* Adjustments for mobile devices */
-@media (max-width: 768px) {
-    .parallax {
-        min-height: 300px; /* Adjust the height for smaller screens */
-        background-attachment: scroll; /* Fixed attachment might not work well on all mobile browsers */
-        background-size: cover; /* Ensure background scales correctly */
-    }
-}
-
-/* Further adjustments for very small screens */
-@media (max-width: 480px) {
-    .parallax {
-        min-height: 200px; /* Further adjust height for very small screens */
-    }
-}
-
-
-/* Waterwave Animation */
-.waterwave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.waterwave::before {
-    content: "";
-    position: absolute;
-    top: -10%;
-    left: 0;
-    width: 100%;
-    height: 120%;
-    background: linear-gradient(90deg, 
-                rgba(255, 255, 255, 0.3) 0%, 
-                rgba(0, 255, 255, 0.3) 25%, 
-                rgba(0, 0, 255, 0.2) 50%, 
-                rgba(0, 255, 0, 0.3) 75%, 
-                rgba(255, 0, 0, 0.3) 100%);
-    border-radius: 50%;
-    animation: waveAnimation 10s linear infinite;
-    transform: scaleX(2) scaleY(1.5);
-}
-
-@keyframes waveAnimation {
-    0% { transform: translateX(-100%) scaleX(2) scaleY(1.5); }
-    100% { transform: translateX(100%) scaleX(2) scaleY(1.5); }
-}
-
-/* Wrapper Animation */
-.wrapper {
-    position: relative;
-    z-index: 1;
-}
-
-.wrapper::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    animation: wrapperAnimation 5s ease-in-out infinite;
-    pointer-events: none;
-    z-index: -1;
-}
-
-@keyframes wrapperAnimation {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(5px); }
-    100% { transform: translateX(0); }
-}
-
-/* Additional Hover Effects */
-button, .btn {
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-button:hover, .btn:hover {
-    background-color: #ff6f61;
-    transform: scale(1.05);
-}
-
-    </style>    
-</head>
-<body>
-    <div class="bubble"></div>
-    <div class="wrapper"></div>
-    <div class="parallax"></div>
-    <div class="waterwave"></div>
-    <div class="container">
-        <h1>Photo Gallery</h1>
-        <p>All this photo is being clicked by me...</p>
-        <div class="row gallery">
-            <!-- Photo 1 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/1.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal1" alt="Photo 1">
-                <div class="modal fade" id="photoModal1" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel1" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/1.jpg" alt="Photo 1">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 2 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/2.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal2" alt="Photo 2">
-                <div class="modal fade" id="photoModal2" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel2" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/2.jpg" alt="Photo 2">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 3 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/7.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal3" alt="Photo 3">
-                <div class="modal fade" id="photoModal3" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel3" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/7.DNG" alt="Photo 3">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 4 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/4.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal4" alt="Photo 4">
-                <div class="modal fade" id="photoModal4" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel4" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/4.jpg" alt="Photo 4">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 5 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/5.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal5" alt="Photo 5">
-                <div class="modal fade" id="photoModal5" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel5" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/5.jpg" alt="Photo 5">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 6 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/8.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal6" alt="Photo 6">
-                <div class="modal fade" id="photoModal6" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel6" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/8.DNG" alt="Photo 6">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 7 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/9.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal7" alt="Photo 7">
-                <div class="modal fade" id="photoModal7" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel7" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/9.DNG" alt="Photo 7">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 8 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/10.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal8" alt="Photo 8">
-                <div class="modal fade" id="photoModal8" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel8" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/10.DNG" alt="Photo 8">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 9 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/12.DNG" class="img-fluid" data-toggle="modal" data-target="#photoModal9" alt="Photo 9">
-                <div class="modal fade" id="photoModal9" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel9" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/12.DNG" alt="Photo 9">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 10 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/14.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal10" alt="Photo 10">
-                <div class="modal fade" id="photoModal10" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel10" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/14.jpg" alt="Photo 10">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 11 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/15.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal11" alt="Photo 11">
-                <div class="modal fade" id="photoModal11" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel11" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/15.jpg" alt="Photo 11">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 12 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/23.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal12" alt="Photo 12">
-                <div class="modal fade" id="photoModal12" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel12" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/23.jpg" alt="Photo 12">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 13 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/16.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal13" alt="Photo 13">
-                <div class="modal fade" id="photoModal13" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel13" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/16.jpg" alt="Photo 13">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 14 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/17.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal14" alt="Photo 14">
-                <div class="modal fade" id="photoModal14" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel14" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/17.jpg" alt="Photo 14">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 15 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/18.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal15" alt="Photo 15">
-                <div class="modal fade" id="photoModal15" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel15" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/18.jpg" alt="Photo 15">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 16 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/21.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal16" alt="Photo 16">
-                <div class="modal fade" id="photoModal16" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel16" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/21.jpg" alt="Photo 16">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 17 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/20.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal17" alt="Photo 17">
-                <div class="modal fade" id="photoModal17" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel17" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/20.jpg" alt="Photo 17">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Photo 18 -->
-            <div class="col-md-4 mb-4">
-                <img src="photogallery/22.jpg" class="img-fluid" data-toggle="modal" data-target="#photoModal18" alt="Photo 18">
-                <div class="modal fade" id="photoModal18" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel18" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <img src="photogallery/22.jpg" alt="Photo 18">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-           
-
-    <div id="bubbles"></div>
-
-    <!-- jQuery, Popper.js, and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // Bubble animation script
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
-            bubble.style.width = `${Math.random() * 30 + 10}px`;
-            bubble.style.height = bubble.style.width;
-            bubble.style.left = `${Math.random() * 100}vw`;
-            bubble.style.bottom = `-${bubble.style.height}`;
-            bubble.style.animationDuration = `${Math.random() * 5 + 5}s`;
-            bubble.style.animationDelay = `${Math.random() * 5}s`; // Optional: Add delay to make bubbles appear at different times
-            bubble.style.transform = `rotateY(${Math.random() * 360}deg)`;
-            document.getElementById('bubbles').appendChild(bubble);
-
-            bubble.addEventListener('animationend', () => {
-                bubble.remove();
-            });
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
         }
 
-        // Create bubbles at intervals
-        setInterval(createBubble, 500); // Adjust frequency if needed
+        /* Base Styles */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('photogallery/5.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 15px auto 0;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay-content {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .gallery-overlay-content i {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        /* Modal Styles */
+        .modal-content {
+            border: none;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .modal-body {
+            padding: 0;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .modal-header {
+            border: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
+
+        .modal-footer {
+            background: #fff;
+            border-radius: 0 0 8px 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .btn-close {
+            background: none;
+            color: white;
+            font-size: 1.5rem;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+        }
+
+        .btn-close:hover {
+            opacity: 1;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-control {
+            height: 50px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
+        }
+
+        textarea.form-control {
+            height: 150px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #c0392b;
+            transform: translateY(-5px);
+        }
+
+        /* Loading Animation */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--light-color);
+            border-bottom-color: var(--accent-color);
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 60vh;
+                background-attachment: scroll;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-form {
+                padding: 20px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader-wrapper" id="loader">
+        <span class="loader"></span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="#">PhotoArt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home" aria-current="page">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home" role="banner">
+        <div class="hero-content">
+            <h1 class="fade-in">Capturing Life's Beautiful Moments</h1>
+            <p class="fade-in delay-1">A visual journey through my lens, showcasing the world's hidden beauty and fleeting moments.</p>
+            <a href="#gallery" class="btn btn-primary btn-lg fade-in delay-2" role="button">View Gallery</a>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="slide-up">My Photography</h2>
+                <p class="slide-up delay-1">Each image tells a unique story, captured with passion and precision.</p>
+            </div>
+            
+            <div class="gallery-grid" role="grid">
+                <!-- Photo 1 -->
+                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal1" role="button" aria-label="View Nature Photography">
+                    <img src="photogallery/1.jpg" alt="Nature Photography" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 2 -->
+                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal2" role="button" aria-label="View Urban Landscape">
+                    <img src="photogallery/2.jpg" alt="Urban Landscape" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 3 -->
+                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal3" role="button" aria-label="View Portrait Photography">
+                    <img src="photogallery/3.jpg" alt="Portrait Photography" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 4 -->
+                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal4" role="button" aria-label="View Wildlife Shot">
+                    <img src="photogallery/4.jpg" alt="Wildlife Shot" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 5 -->
+                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal5" role="button" aria-label="View Mountain Landscape">
+                    <img src="photogallery/5.jpg" alt="Mountain Landscape" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 6 -->
+                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal6" role="button" aria-label="View Street Photography">
+                    <img src="photogallery/14.jpg" alt="Street Photography" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 7 -->
+                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal7" role="button" aria-label="View Abstract Art">
+                    <img src="photogallery/15.jpg" alt="Abstract Art" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 8 -->
+                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal8" role="button" aria-label="View Night Photography">
+                    <img src="photogallery/16.jpg" alt="Night Photography" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 9 -->
+                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal9" role="button" aria-label="View Macro Photography">
+                    <img src="photogallery/17.jpg" alt="Macro Photography" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 10 -->
+                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal10" role="button" aria-label="View Seascape">
+                    <img src="photogallery/18.jpg" alt="Seascape" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 11 -->
+                <div class="gallery-item slide-up delay-1" data-bs-toggle="modal" data-bs-target="#photoModal11" role="button" aria-label="View Architecture">
+                    <img src="photogallery/19.jpg" alt="Architecture" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Photo 12 -->
+                <div class="gallery-item slide-up delay-2" data-bs-toggle="modal" data-bs-target="#photoModal12" role="button" aria-label="View Travel Photography">
+                    <img src="photogallery/23.jpg" alt="Travel Photography" class="gallery-img" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <i class="fas fa-search-plus"></i>
+                            <h5>View Details</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="slide-up">About The Artist</h2>
+                <p class="slide-up delay-1">Discover the story behind the lens</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-img slide-up">
+                    <img src="photogallery/16.jpg" alt="Photographer at work" loading="lazy">
+                </div>
+                <div class="about-text slide-up delay-1">
+                    <h3>Hi, I'm Avhishek Shrestha</h3>
+                    <p>With over 8 years of professional photography experience, I specialize in capturing the essence of moments that tell compelling visual stories. My journey began with a simple point-and-shoot camera and has evolved into a lifelong passion for visual storytelling.</p>
+                    <p>My work has been featured in several exhibitions and publications, and I've had the privilege of working with clients ranging from international brands to local businesses. What drives me is the ability to freeze time - to capture emotions, landscapes, and moments that would otherwise be lost to memory.</p>
+                    <p>When I'm not behind the camera, you can find me teaching photography workshops or exploring new techniques to push the boundaries of my craft.</p>
+                    <a href="#contact" class="btn btn-primary" role="button">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="slide-up">Get In Touch</h2>
+                <p class="slide-up delay-1">Let's create something beautiful together</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 slide-up">
+                    <div class="contact-info mb-5">
+                        <h4>Contact Information</h4>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> 123 Photography Street, Creative City</p>
+                        <p><i class="fas fa-phone me-2"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope me-2"></i> contact@myphotography.com</p>
+                        
+                        <div class="social-links mt-4">
+                            <a href="https://facebook.com/yourprofile" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                           
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 slide-up delay-1">
+                    <div class="contact-form">
+                        <h4 class="mb-4">Send Me a Message</h4>
+                        <form id="contactForm" novalidate>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="name" placeholder="Your Name" required aria-label="Your Name">
+                                <div class="invalid-feedback">Please enter your name.</div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="Your Email" required aria-label="Your Email">
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="subject" placeholder="Subject" aria-label="Subject">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" id="message" placeholder="Your Message" required aria-label="Your Message"></textarea>
+                                <div class="invalid-feedback">Please enter your message.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <a href="#" class="footer-logo">PhotoArt</a>
+                    <p>Capturing the beauty of the world one frame at a time. Professional photography services for all occasions and needs.</p>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">Portrait</a></li>
+                            <li><a href="#">Wedding</a></li>
+                            <li><a href="#">Commercial</a></li>
+                            <li><a href="#">Landscape</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-links">
+                        <h4>Newsletter</h4>
+                        <p>Subscribe to get updates on my latest work and photography tips.</p>
+                        <form id="newsletterForm" class="mt-3" novalidate>
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="newsletterEmail" placeholder="Your Email" required aria-label="Newsletter Email">
+                                <button class="btn btn-primary" type="submit">Subscribe</button>
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 My Photography. All Rights Reserved. | Designed with passion by [Your Name]</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Photo Modals -->
+    <!-- Modal 1 -->
+    <div class="modal fade" id="photoModal1" tabindex="-1" aria-labelledby="photoModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/1.jpg" alt="Nature Photography" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Nature Photography</h5>
+                    <p>A serene forest captured at dawn, showcasing the interplay of light and shadow.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2 -->
+    <div class="modal fade" id="photoModal2" tabindex="-1" aria-labelledby="photoModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/2.jpg" alt="Urban Landscape" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Urban Landscape</h5>
+                    <p>A vibrant cityscape at dusk, capturing the energy of urban life.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 3 -->
+    <div class="modal fade" id="photoModal3" tabindex="-1" aria-labelledby="photoModal3Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/7.jpg" alt="Portrait Photography" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Portrait Photography</h5>
+                    <p>A candid portrait highlighting raw emotion and personality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 4 -->
+    <div class="modal fade" id="photoModal4" tabindex="-1" aria-labelledby="photoModal4Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/4.jpg" alt="Wildlife Shot" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Wildlife Shot</h5>
+                    <p>A close-up of a majestic animal in its natural habitat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 5 -->
+    <div class="modal fade" id="photoModal5" tabindex="-1" aria-labelledby="photoModal5Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/5.jpg" alt="Mountain Landscape" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Mountain Landscape</h5>
+                    <p>A breathtaking view of rugged mountains under a dramatic sky.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 6 -->
+    <div class="modal fade" id="photoModal6" tabindex="-1" aria-labelledby="photoModal6Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/8.jpg" alt="Street Photography" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Street Photography</h5>
+                    <p>A moment of everyday life captured in the bustling streets.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 7 -->
+    <div class="modal fade" id="photoModal7" tabindex="-1" aria-labelledby="photoModal7Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/9.jpg" alt="Abstract Art" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Abstract Art</h5>
+                    <p>An artistic exploration of shapes and colors.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 8 -->
+    <div class="modal fade" id="photoModal8" tabindex="-1" aria-labelledby="photoModal8Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/10.jpg" alt="Night Photography" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Night Photography</h5>
+                    <p>A stunning capture of the night sky and city lights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 9 -->
+    <div class="modal fade" id="photoModal9" tabindex="-1" aria-labelledby="photoModal9Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/12.jpg" alt="Macro Photography" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Macro Photography</h5>
+                    <p>A detailed close-up of nature's smallest wonders.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 10 -->
+    <div class="modal fade" id="photoModal10" tabindex="-1" aria-labelledby="photoModal10Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/14.jpg" alt="Seascape" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Seascape</h5>
+                    <p>The calming beauty of the ocean at sunset.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 11 -->
+    <div class="modal fade" id="photoModal11" tabindex="-1" aria-labelledby="photoModal11Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/15.jpg" alt="Architecture" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Architecture</h5>
+                    <p>Modern architecture captured with precision and creativity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 12 -->
+    <div class="modal fade" id="photoModal12" tabindex="-1" aria-labelledby="photoModal12Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <img src="photogallery/23.jpg" alt="Travel Photography" class="modal-img">
+                </div>
+                <div class="modal-footer">
+                    <h5>Travel Photography</h5>
+                    <p>A vibrant moment from a journey across distant lands.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <!-- Smooth Scroll Polyfill -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js" integrity="sha512-4G1N1Mh/4bC4yJse0h2eSSfC4O76F71Qv4s4D2Jo0p3T2ZKy0XJnp0RRz7MhSumo0i7n9afvS1Ye4WOL9f5z3Eg==" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Back to Top Button
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        // Smooth Scroll for Nav Links
+        const scroll = new SmoothScroll('a[href*="#"]', {
+            speed: 800,
+            speedAsDuration: true
+        });
+
+        // Form Validation
+        const contactForm = document.getElementById('contactForm');
+        const newsletterForm = document.getElementById('newsletterForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (contactForm.checkValidity()) {
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            } else {
+                contactForm.classList.add('was-validated');
+            }
+        });
+
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (newsletterForm.checkValidity()) {
+                alert('Thank you for subscribing to my newsletter!');
+                newsletterForm.reset();
+            } else {
+                newsletterForm.classList.add('was-validated');
+            }
+        });
+
+        // PWA Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.log('Service Worker registered', reg))
+                .catch(err => console.error('Service Worker registration failed', err));
+        }
     </script>
 </body>
+</html>
