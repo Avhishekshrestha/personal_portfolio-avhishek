@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Cybersecurity and AI-Driven Threat Defense</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text: #e6f1ff;
+            --text-secondary: #8892b0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            padding: 100px 0 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--accent), #4dabf7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(100, 255, 218, 0.6), 0 0 30px rgba(100, 255, 218, 0.4);
+            }
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .main-objective {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            border-left: 4px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .main-objective h2 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 50px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), #4dabf7);
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            width: 50%;
+            padding: 30px;
+            position: relative;
+            margin-bottom: 50px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 50px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 50px;
+        }
+        
+        .timeline-content {
+            background-color: var(--secondary);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), #4dabf7);
+        }
+        
+        .month {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .focus {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .learn-list, .tools-list, .project {
+            margin-bottom: 15px;
+        }
+        
+        .learn-list li, .tools-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .learn-list li::before, .tools-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .project {
+            background-color: rgba(100, 255, 218, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .tools-section {
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .tool-card {
+            background-color: var(--secondary);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tool-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .outcome-section {
+            background-color: var(--secondary);
+            padding: 50px;
+            border-radius: 10px;
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .outcome-item {
+            background-color: var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        .outcome-item i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Advanced Cybersecurity and AI-Driven Threat Defense</h1>
+            <p class="subtitle">A comprehensive 6-month roadmap to master cybersecurity automation, cloud defense, network monitoring, AI/ML threat detection, and compliance frameworks</p>
+        </header>
+        
+        <section class="main-objective">
+            <h2><i class="fas fa-bullseye"></i> Main Objective</h2>
+            <p>To make you proficient in cybersecurity automation, cloud defense, network monitoring, AI/ML threat detection, and compliance frameworks so you can step confidently into SOC Analyst, Penetration Tester, or Security Engineer roles.</p>
+        </section>
+        
+        <section class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="month"><i class="fas fa-network-wired"></i> Month 1 – Foundations</h3>
+                    <p class="focus">Focus: Build strong technical base.</p>
+                    <div class="learn-list">
+                        <h4>Learn:</h4>
+                        <ul>
+                            <li>OSI & TCP/IP Models, subnetting, firewalls, VPNs</li>
+                            <li>Linux commands, file permissions, system logs</li>
+                            <li>Python basics: loops, regex, file handling</li>
+                            <li>Automate log analysis, password auditing, and system scanning</li>
+                        </ul>
+                    </div>
+                    <div class="tools-list">
+                        <h4>Tools:</h4>
+                        <ul>
+                            <li>Wireshark, Nmap, Python, Bash</li>
+                        </ul>
+                    </div>
+                    <div class="project">
+                        <h4>Project:</h4>
+                        <p>Build a port scanner using Python</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="month"><i class="fas fa-robot"></i> Month 2 – Security Automation & Threat Detection</h3>
+                    <p class="focus">Focus: Automate daily security operations.</p>
+                    <div class="learn-list">
+                        <h4>Learn:</h4>
+                        <ul>
+                            <li>Python libraries for cybersecurity (scapy, socket, requests)</li>
+                            <li>Script-based log parsing & alert generation</li>
+                            <li>Splunk / ELK Stack basics for SIEM</li>
+                            <li>Understanding Indicators of Compromise (IOCs)</li>
+                        </ul>
+                    </div>
+                    <div class="tools-list">
+                        <h4>Tools:</h4>
+                        <ul>
+                            <li>Splunk, Elasticsearch, Kibana, Logstash</li>
+                        </ul>
+                    </div>
+                    <div class="project">
+                        <h4>Project:</h4>
+                        <p>Automate intrusion detection alerts using Python & ELK</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="month"><i class="fas fa-cloud"></i> Month 3 – Cloud Security (AWS + Azure)</h3>
+                    <p class="focus">Focus: Defend cloud infrastructure.</p>
+                    <div class="learn-list">
+                        <h4>Learn:</h4>
+                        <ul>
+                            <li>Shared responsibility model</li>
+                            <li>AWS IAM, GuardDuty, CloudTrail, WAF</li>
+                            <li>Azure Sentinel & Defender for Cloud</li>
+                            <li>Cloud incident response planning</li>
+                        </ul>
+                    </div>
+                    <div class="project">
+                        <h4>Project:</h4>
+                        <p>Create AWS security automation using Python (lambda function for suspicious log detection)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="month"><i class="fas fa-user-secret"></i> Month 4 – Penetration Testing & Ethical Hacking</h3>
+                    <p class="focus">Focus: Offensive Security Skills.</p>
+                    <div class="learn-list">
+                        <h4>Learn:</h4>
+                        <ul>
+                            <li>Kali Linux, Metasploit, Burp Suite</li>
+                            <li>Web App Security (OWASP Top 10)</li>
+                            <li>Vulnerability assessment with Nessus</li>
+                            <li>Exploitation, privilege escalation</li>
+                        </ul>
+                    </div>
+                    <div class="project">
+                        <h4>Project:</h4>
+                        <p>Simulate a penetration test lab & generate vulnerability report</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="month"><i class="fas fa-brain"></i> Month 5 – AI/ML for Cybersecurity</h3>
+                    <p class="focus">Focus: Build intelligent detection systems.</p>
+                    <div class="learn-list">
+                        <h4>Learn:</h4>
+                        <ul>
+                            <li>ML concepts: Supervised vs Unsupervised</li>
+                            <li>Feature extraction from network logs</li>
+                            <li>Anomaly detection, phishing email classification</li>
+                            <li>Tools: Scikit-learn, TensorFlow, Pandas</li>
+                        </ul>
+                    </div>
+                    <div class="project">
+                        <h4>Project:</h4>
+                        <p>Build an AI-based intrusion detection system using real datasets</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3 class="month"><i class="fas fa-gavel"></i> Month 6 – Cyber Laws, Compliance & Final Integration</h3>
+                    <p class="focus">Focus: Governance + capstone project.</p>
+                    <div class="learn-list">
+                        <h4>Learn:</h4>
+                        <ul>
+                            <li>ISO 27001, GDPR, HIPAA basics</li>
+                            <li>Risk management frameworks (NIST, CIS)</li>
+                            <li>Security policies & audit preparation</li>
+                            <li>Integrate all skills: Cloud + SIEM + AI + Compliance</li>
+                        </ul>
+                    </div>
+                    <div class="project">
+                        <h4>Project:</h4>
+                        <p>End-to-end "Cyber Defense Operations Dashboard" (Python + Splunk + AWS)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="tools-section">
+            <h2><i class="fas fa-tools"></i> Tools & Platforms</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Languages</h3>
+                    <p>Python, Bash</p>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Security Tools</h3>
+                    <p>Nmap, Wireshark, Burp Suite, Metasploit</p>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>SIEM</h3>
+                    <p>Splunk, ELK Stack</p>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Tools</h3>
+                    <p>TensorFlow, Scikit-Learn</p>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud</h3>
+                    <p>AWS, Azure</p>
+                </div>
+                <div class="tool-card">
+                    <i class="fas fa-file-contract"></i>
+                    <h3>Compliance</h3>
+                    <p>ISO 27001 Toolkit</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="outcome-section">
+            <h2><i class="fas fa-trophy"></i> Outcome After 6 Months</h2>
+            <div class="outcome-grid">
+                <div class="outcome-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Hands-on Experience</h3>
+                    <p>Defensive & offensive cybersecurity</p>
+                </div>
+                <div class="outcome-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI-Based Automation</h3>
+                    <p>Anomaly detection projects</p>
+                </div>
+                <div class="outcome-item">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Security</h3>
+                    <p>Cloud security competence</p>
+                </div>
+                <div class="outcome-item">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Certification Ready</h3>
+                    <p>Security+, CEH, IBM Cybersecurity Analyst</p>
+                </div>
+                <div class="outcome-item">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Professional Portfolio</h3>
+                    <p>Resume-ready project experience</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Advanced Cybersecurity and AI-Driven Threat Defense Roadmap</p>
+            <p>© 2023 | Designed for Future Cybersecurity Professionals</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Particles.js configuration
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#64ffda" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#64ffda",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Add scroll animation to timeline items
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            timelineItems.forEach(item => {
+                item.style.opacity = 0;
+                item.style.transform = 'translateY(50px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>

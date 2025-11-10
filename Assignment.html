@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avhishek Shrestha - Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3e64ff;
+            --secondary-color: #2d3748;
+            --accent-color: #f7f9fc;
+            --text-color: #4a5568;
+            --light-color: #ffffff;
+            --dark-color: #1a202c;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--accent-color);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: #2a4fd8;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: #2a4fd8;
+            border-color: #2a4fd8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--light-color);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--dark-color);
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--text-color);
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .navbar-nav .nav-link.active {
+            color: var(--primary-color);
+        }
+        
+        .navbar-nav .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(62, 100, 255, 0.8), rgba(62, 100, 255, 0.9)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .section-title p {
+            color: var(--text-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: var(--light-color);
+        }
+        
+        .services-1 {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            height: 100%;
+            display: block;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .services-1:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .services-1 .icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(62, 100, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .services-1 .icon i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .services-1 h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .services-1 p {
+            color: var(--text-color);
+        }
+        
+        /* Portfolio Section */
+        .portfolio-section {
+            background-color: var(--accent-color);
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-content p {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--light-color);
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            height: 50px;
+            border-radius: 5px;
+            border: 1px solid #e2e8f0;
+            padding: 10px 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(62, 100, 255, 0.2);
+        }
+        
+        textarea.form-control {
+            height: auto;
+            resize: none;
+        }
+        
+        /* Contact Info Boxes */
+        .contact-info .box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .contact-info .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-info .icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(62, 100, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        .contact-info .icon span {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Big Heading Style */
+        .big {
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(62, 100, 255, 0.05);
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            z-index: -1;
+        }
+        
+        .big-2 {
+            font-size: 8rem;
+        }
+        
+        /* Admin Dashboard */
+        .dashboard-section {
+            background-color: var(--accent-color);
+            min-height: 100vh;
+            padding-top: 150px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .inquiry-item {
+            background: var(--accent-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #a0aec0;
+        }
+        
+        .footer-links ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #2d3748;
+            color: #a0aec0;
+        }
+        
+        /* Animations */
+        .ftco-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .ftco-animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .services-1, .project-card {
+                margin-bottom: 30px;
+            }
+            
+            .big {
+                font-size: 4rem;
+                top: -20px;
+            }
+            
+            .big-2 {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Avhishek</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#services-section">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#portfolio-section">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#contact-section">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin-login.html">Admin</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content - This will change based on the page -->
+    <main id="main-content">
+        <!-- Home Page Content -->
+        <div id="home-page" class="page-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <h1 class="ftco-animate">Hi, I'm Avhishek Shrestha</h1>
+                            <p class="ftco-animate">Full-Stack Developer & Cybersecurity Specialist creating innovative digital solutions for businesses and academic projects.</p>
+                            <a href="#services-section" class="btn btn-primary btn-lg ftco-animate">Explore My Services</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services-section" class="services-section">
+                <div class="container">
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-md-8 text-center section-title">
+                            <h2>My Services</h2>
+                            <p>I offer a range of professional services to help bring your digital ideas to life.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-center d-flex ftco-animate">
+                            <a href="#" class="services-1">
+                                <span class="icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </span>
+                                <div class="desc">
+                                    <h3 class="mb-3">Web Design</h3>
+                                    <p>Creating beautiful, responsive websites that provide excellent user experience.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 text-center d-flex ftco-animate">
+                            <a href="#" class="services-1">
+                                <span class="icon">
+                                    <i class="fas fa-camera"></i>
+                                </span>
+                                <div class="desc">
+                                    <h3 class="mb-3">Photography</h3>
+                                    <p>Professional photography services for events, products, and personal portfolios.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 text-center d-flex ftco-animate">
+                            <a href="#" class="services-1">
+                                <span class="icon">
+                                    <i class="fas fa-paint-brush"></i>
+                                </span>
+                                <div class="desc">
+                                    <h3 class="mb-3">Graphic Design</h3>
+                                    <p>Creative visual designs for branding, marketing materials, and digital content.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 text-center d-flex ftco-animate">
+                            <a href="#" class="services-1">
+                                <span class="icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </span>
+                                <div class="desc">
+                                    <h3 class="mb-3">Product Strategy</h3>
+                                    <p>Strategic planning and development for digital products and services.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Assignment Portfolio Service -->
+                        <div class="col-md-4 text-center d-flex ftco-animate">
+                            <a href="assignment-portfolio.html" class="services-1">
+                                <span class="icon">
+                                    <i class="fas fa-tasks"></i>
+                                </span>
+                                <div class="desc">
+                                    <h3 class="mb-3">Assignment Portfolio</h3>
+                                    <p>Academic and professional projects for clients, businesses, and students.</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4 text-center d-flex ftco-animate">
+                            <a href="#" class="services-1">
+                                <span class="icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </span>
+                                <div class="desc">
+                                    <h3 class="mb-3">Cybersecurity</h3>
+                                    <p>Security assessments, threat detection, and protection solutions for your digital assets.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio-section" class="portfolio-section">
+                <div class="container">
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-md-8 text-center section-title">
+                            <h2>Featured Work</h2>
+                            <p>Check out some of my recent projects and creative work.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-card">
+                                <div class="project-img">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="project-content">
+                                    <h3>Mobile App UI/UX</h3>
+                                    <p>Designed and prototyped a fitness tracking mobile application with intuitive user interface.</p>
+                                    <a href="#" class="btn btn-outline-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-card">
+                                <div class="project-img">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="project-content">
+                                    <h3>E-commerce Website</h3>
+                                    <p>Developed a full-featured online store with payment integration and inventory management.</p>
+                                    <a href="#" class="btn btn-outline-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-card">
+                                <div class="project-img">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="project-content">
+                                    <h3>Business Analytics Dashboard</h3>
+                                    <p>Created an interactive dashboard for visualizing business metrics and performance indicators.</p>
+                                    <a href="#" class="btn btn-outline-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+                <div class="container">
+                    <div class="row justify-content-center mb-5 pb-3">
+                        <div class="col-md-7 heading-section text-center ftco-animate">
+                            <h1 class="big big-2">Contact</h1>
+                            <h2 class="mb-4">Contact Me</h2>
+                            <p>Contact me for more further information related to work or with me.....</p>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex contact-info mb-5">
+                        <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                            <div class="align-self-stretch box p-4 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="icon-map-signs"><i class="fas fa-map-marker-alt"></i></span>
+                                </div>
+                                <h3 class="mb-4">Address</h3>
+                                <p>Ratnanagar-10, Tandi chitwan, Nepal; postal code: 44204</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                            <div class="align-self-stretch box p-4 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="icon-phone2"><i class="fas fa-phone"></i></span>
+                                </div>
+                                <h3 class="mb-4">Contact Number</h3>
+                                <p><a href="tel://+977 9844335249">+977 9844335249</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                            <div class="align-self-stretch box p-4 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="icon-paper-plane"><i class="fas fa-paper-plane"></i></span>
+                                </div>
+                                <h3 class="mb-4">Email Address</h3>
+                                <p><a href="mailto:sthaavhishek984@gmail.com">sthaavhishek984@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                            <div class="align-self-stretch box p-4 text-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="icon-globe"><i class="fas fa-globe"></i></span>
+                                </div>
+                                <h3 class="mb-4">Website</h3>
+                                <p><a href="#">www.avhishekshrestha.com.np</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row no-gutters block-9">
+                        <div class="col-md-6 order-md-last d-flex">
+                            <form action="https://formsubmit.co/sthaavhishek984@gmail.com" method="post" class="bg-light p-4 p-md-5 contact-form">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="Message" id="" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" name="attachment" accept="image/png, image/jpeg">
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="_captcha" value="false">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="_template" value="table">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-6 d-flex">
+                            <div id="map" class="bg-white" style="width: 100%; min-height: 400px; border-radius: 10px; overflow: hidden;">
+                                <!-- Map placeholder -->
+                                <div style="width: 100%; height: 100%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; color: var(--primary-color);">
+                                    <div class="text-center">
+                                        <i class="fas fa-map-marked-alt fa-3x mb-3"></i>
+                                        <p>Map Location</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Assignment Portfolio Page Content -->
+        <div id="assignment-portfolio-page" class="page-content" style="display: none;">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <h1 class="ftco-animate">Assignment & Project Portfolio</h1>
+                            <p class="ftco-animate">Explore my professional and academic works below.</p>
+                            <a href="#portfolio" class="btn btn-primary btn-lg ftco-animate">View Projects</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="ftco-section bg-light">
+                <div class="container">
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-md-12 text-center section-title ftco-animate">
+                            <h2>Featured Assignments</h2>
+                            <p>Projects built for universities, businesses, and cybersecurity research.</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Card 1 -->
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-card">
+                                <div class="project-img">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="project-content">
+                                    <h3>Ride Sharing & Delivery Platform</h3>
+                                    <p>Oracle SQL + MongoDB + Object-Relational Modeling</p>
+                                    <a href="#" class="btn btn-outline-primary mt-2">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-card">
+                                <div class="project-img">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="project-content">
+                                    <h3>AI-Powered Threat Detection</h3>
+                                    <p>Machine Learning + Explainable AI (XAI)</p>
+                                    <a href="#" class="btn btn-outline-primary mt-2">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="col-md-4 ftco-animate">
+                            <div class="project-card">
+                                <div class="project-img">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <div class="project-content">
+                                    <h3>Customer Inquiry Web System</h3>
+                                    <p>Full-Stack PHP + Admin Panel + Data Visualization</p>
+                                    <a href="#" class="btn btn-outline-primary mt-2">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inquiry Section -->
+            <section id="contact" class="ftco-section">
+                <div class="container">
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-md-12 text-center section-title ftco-animate">
+                            <h2>Request a Custom Assignment</h2>
+                            <p>Fill in your project details and I'll get back to you shortly.</p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <form id="inquiryForm" class="contact-form">
+                                <div class="form-group">
+                                    <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" id="projectType" class="form-control" placeholder="Project Type (e.g., Database, AI, Web)" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea id="message" cols="30" rows="7" class="form-control" placeholder="Project Details" required></textarea>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-primary py-3 px-5">Submit Inquiry</button>
+                                </div>
+                            </form>
+                            <div class="text-center mt-3">
+                                <a href="admin-dashboard.html" class="btn btn-outline-dark py-2 px-4">Go to Admin Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Admin Dashboard Page Content -->
+        <div id="admin-dashboard-page" class="page-content" style="display: none;">
+            <section class="dashboard-section">
+                <div class="container">
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-md-10 text-center section-title">
+                            <h2>Admin Dashboard</h2>
+                            <p>Manage assignment inquiries and portfolio content</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="dashboard-card">
+                                <h4>Inquiry Statistics</h4>
+                                <div class="mt-4">
+                                    <h5>Total Inquiries: <span id="total-inquiries">0</span></h5>
+                                    <h5>New This Month: <span id="month-inquiries">0</span></h5>
+                                    <h5>Pending Responses: <span id="pending-inquiries">0</span></h5>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-8">
+                            <div class="dashboard-card">
+                                <h4>Recent Inquiries</h4>
+                                <div id="inquiries-list" class="mt-4">
+                                    <!-- Inquiries will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Admin Login Page Content -->
+        <div id="admin-login-page" class="page-content" style="display: none;">
+            <section class="dashboard-section">
+                <div class="container">
+                    <div class="login-container">
+                        <h3 class="text-center mb-4">Admin Login</h3>
+                        <form id="loginForm">
+                            <div class="form-group mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" id="username" class="form-control" required>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" class="form-control" required>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary w-100">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="navbar-brand text-white">Avhishek</h3>
+                    <p class="mt-3">Full-Stack Developer & Cybersecurity Specialist creating innovative digital solutions.</p>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html#services-section">Services</a></li>
+                            <li><a href="index.html#portfolio-section">Portfolio</a></li>
+                            <li><a href="index.html#contact-section">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-links">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">Photography</a></li>
+                            <li><a href="assignment-portfolio.html">Assignment Portfolio</a></li>
+                            <li><a href="#">Cybersecurity</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-links">
+                        <h4>Contact Info</h4>
+                        <ul>
+                            <li><i class="fas fa-envelope me-2"></i> sthaavhishek984@gmail.com</li>
+                            <li><i class="fas fa-phone me-2"></i> +977 9844335249</li>
+                            <li><i class="fas fa-map-marker-alt me-2"></i> Ratnanagar-10, Tandi chitwan, Nepal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        <p>&copy; 2023 Avhishek Shrestha. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show home page by default
+            showPage('home-page');
+            
+            // Handle navigation
+            document.querySelectorAll('a[href]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === 'index.html') {
+                        e.preventDefault();
+                        showPage('home-page');
+                        updateActiveNavLink('home');
+                    } else if (href === 'assignment-portfolio.html') {
+                        e.preventDefault();
+                        showPage('assignment-portfolio-page');
+                        updateActiveNavLink('assignment-portfolio');
+                    } else if (href === 'admin-dashboard.html') {
+                        e.preventDefault();
+                        showPage('admin-dashboard-page');
+                        updateActiveNavLink('admin-dashboard');
+                    } else if (href === 'admin-login.html') {
+                        e.preventDefault();
+                        showPage('admin-login-page');
+                        updateActiveNavLink('admin-login');
+                    } else if (href.startsWith('#')) {
+                        // Internal page anchor links
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Initialize animations
+            initAnimations();
+            
+            // Handle inquiry form submission
+            const inquiryForm = document.getElementById('inquiryForm');
+            if (inquiryForm) {
+                inquiryForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const projectType = document.getElementById('projectType').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // Save to localStorage
+                    saveInquiry({ name, email, projectType, message, date: new Date().toISOString() });
+                    
+                    // Show success message
+                    alert('Your inquiry has been submitted successfully!');
+                    
+                    // Reset form
+                    inquiryForm.reset();
+                });
+            }
+            
+            // Handle login form submission
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('username').value;
+                    const password = document.getElementById('password').value;
+                    
+                    // Simple authentication with your custom credentials
+                    if (username === 'admin' && password === 'Avhishek5249@') {
+                        showPage('admin-dashboard-page');
+                        updateActiveNavLink('admin-dashboard');
+                    } else {
+                        alert('Invalid credentials. Please try again.');
+                    }
+                });
+            }
+            
+            // Load inquiries for admin dashboard
+            if (document.getElementById('admin-dashboard-page').style.display !== 'none') {
+                loadInquiries();
+            }
+        });
+        
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show the requested page
+            document.getElementById(pageId).style.display = 'block';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Reinitialize animations for the new page
+            setTimeout(initAnimations, 100);
+            
+            // If showing admin dashboard, load inquiries
+            if (pageId === 'admin-dashboard-page') {
+                loadInquiries();
+            }
+        }
+        
+        function updateActiveNavLink(activePage) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Set the active link based on the current page
+            if (activePage === 'home') {
+                document.querySelector('a[href="index.html"]').classList.add('active');
+            } else if (activePage === 'assignment-portfolio') {
+                document.querySelector('a[href="assignment-portfolio.html"]').classList.add('active');
+            } else if (activePage === 'admin-dashboard' || activePage === 'admin-login') {
+                document.querySelector('a[href="admin-login.html"]').classList.add('active');
+            }
+        }
+        
+        function initAnimations() {
+            const animatedElements = document.querySelectorAll('.ftco-animate');
+            
+            animatedElements.forEach(element => {
+                // Reset animation state
+                element.classList.remove('ftco-animated');
+                
+                // Create intersection observer to trigger animations when elements come into view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('ftco-animated');
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                observer.observe(element);
+            });
+        }
+        
+        function saveInquiry(inquiry) {
+            let inquiries = JSON.parse(localStorage.getItem('assignmentInquiries')) || [];
+            inquiries.push(inquiry);
+            localStorage.setItem('assignmentInquiries', JSON.stringify(inquiries));
+        }
+        
+        function loadInquiries() {
+            const inquiries = JSON.parse(localStorage.getItem('assignmentInquiries')) || [];
+            const inquiriesList = document.getElementById('inquiries-list');
+            const totalInquiries = document.getElementById('total-inquiries');
+            const monthInquiries = document.getElementById('month-inquiries');
+            const pendingInquiries = document.getElementById('pending-inquiries');
+            
+            // Update statistics
+            totalInquiries.textContent = inquiries.length;
+            
+            // Calculate inquiries from this month
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            const monthInquiriesCount = inquiries.filter(inquiry => {
+                const inquiryDate = new Date(inquiry.date);
+                return inquiryDate.getMonth() === currentMonth && inquiryDate.getFullYear() === currentYear;
+            }).length;
+            
+            monthInquiries.textContent = monthInquiriesCount;
+            pendingInquiries.textContent = inquiries.length; // Simplified - in a real app, you'd track response status
+            
+            // Display inquiries
+            inquiriesList.innerHTML = '';
+            
+            if (inquiries.length === 0) {
+                inquiriesList.innerHTML = '<p>No inquiries yet.</p>';
+            } else {
+                inquiries.slice(-5).reverse().forEach(inquiry => {
+                    const inquiryDate = new Date(inquiry.date).toLocaleDateString();
+                    
+                    const inquiryItem = document.createElement('div');
+                    inquiryItem.className = 'inquiry-item';
+                    inquiryItem.innerHTML = `
+                        <h5>${inquiry.name} - ${inquiry.projectType}</h5>
+                        <p><strong>Email:</strong> ${inquiry.email}</p>
+                        <p><strong>Message:</strong> ${inquiry.message}</p>
+                        <small class="text-muted">Submitted: ${inquiryDate}</small>
+                    `;
+                    
+                    inquiriesList.appendChild(inquiryItem);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
