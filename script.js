@@ -11,6 +11,60 @@ const daysData = [
   { emoji: "🤗", date: "Feb 12", title: "Hug Day", message: "Your arms feel like my safest home. Every hug from you heals my soul 🤗", surprise: "🤗 Warm hugs from my heart! 🤗" },
   { emoji: "💋", date: "Feb 13", title: "Kiss Day", message: "Every moment with you feels magical. Your kiss is the seal of our eternal love 💋", surprise: "💋💋💋 Sweet kisses for you! 💋💋💋" }
 ];
+
+// Password for early access
+const PASSWORD = "kritikabudi";
+
+// Function to check if a day is unlocked
+function isDayUnlocked(dayIndex) {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth(); // 0-based
+  const currentDay = now.getDate();
+
+  // Assuming 2026 for Valentine days
+  const year = 2026;
+  const month = 1; // February is 1 (0-based)
+  const day = 7 + dayIndex; // Feb 7 to 14
+
+  if (currentYear > year || (currentYear === year && currentMonth > month) || (currentYear === year && currentMonth === month && currentDay >= day)) {
+    return true;
+  }
+  return false;
+}
+
+// Function to prompt for password
+function promptPassword() {
+  const password = prompt("This day is not yet unlocked. Enter password to access:");
+  return password === PASSWORD;
+}
+
+// Function to check and show day message
+function checkAndShowDayMessage(index) {
+  if (isDayUnlocked(index)) {
+    showDayMessage(index);
+  } else {
+    if (promptPassword()) {
+      showDayMessage(index);
+    } else {
+      alert("Incorrect password. Try again later!");
+    }
+  }
+}
+
+// Function to check and open proposal
+function checkAndOpenProposal() {
+  const proposalIndex = 7; // Feb 14 is index 7 (0-based from Feb 7)
+  if (isDayUnlocked(proposalIndex)) {
+    openProposal();
+  } else {
+    if (promptPassword()) {
+      openProposal();
+    } else {
+      alert("Incorrect password. Try again later!");
+    }
+  }
+}
 // Music state
 let isMuted = true;
 let bgMusic;

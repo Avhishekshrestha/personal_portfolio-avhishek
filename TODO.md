@@ -1,0 +1,3 @@
+- [ ] Add date checking and password logic to script.js
+- [ ] Update onclick handlers in valentine.html for day-cards and proposal
+- [ ] Test the functionality
