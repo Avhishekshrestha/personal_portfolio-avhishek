@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kritika ❤️ Avhishek - Valentine 2026</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="music/perfect_ed_sheeran.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <!-- Floating Hearts Container -->
+  <div id="floating-hearts"></div>
+  <!-- Music Toggle Button -->
+  <button id="musicToggle" class="music-btn" onclick="toggleMusic()">
+    <svg id="muteIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <line x1="23" y1="9" x2="17" y2="15"></line>
+      <line x1="17" y1="9" x2="23" y2="15"></line>
+    </svg>
+    <svg id="volumeIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+  </button>
+  <!-- Love Letter Button -->
+  <button id="letterBtn" class="letter-btn" onclick="openLetter()">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+    </svg>
+  </button>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=1920" alt="Romantic sunset">
+      <img class="couple-bg-photo" src="photogallery/val 5.jpeg" alt="Kritika and Avhishek">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hearts-row">
+        <span class="heart-icon pulse">❤️</span>
+        <span class="sparkle">✨</span>
+        <span class="heart-icon pulse">❤️</span>
+      </div>
+      <h1 class="hero-title">Kritika ❤️ Avhishek</h1>
+      <p class="hero-subtitle">Valentine Week 2026</p>
+      <p class="hero-text">A romantic surprise made specially for you 💕</p>
+      <div class="scroll-indicator">
+        <div class="scroll-dot"></div>
+      </div>
+    </div>
+  </section>
+  <!-- Valentine Days Section -->
+  <section class="valentine-days">
+    <h2 class="section-title">Valentine Week</h2>
+    <p class="section-subtitle">Click each day for a special message ✨</p>
+    
+    <div class="days-grid">
+      <div class="day-card" onclick="showDayMessage(0)">
+        <span class="day-emoji">🌹</span>
+        <span class="day-date">Feb 7</span>
+        <h3 class="day-title">Rose Day</h3>
+        <p class="day-hint">Tap to read ❤️</p>
+      </div>
+      
+      <div class="day-card" onclick="showDayMessage(1)">
+        <span class="day-emoji">💝</span>
+        <span class="day-date">Feb 8</span>
+        <h3 class="day-title">Propose Day</h3>
+        <p class="day-hint">Tap to read ❤️</p>
+      </div>
+      
+      <div class="day-card" onclick="showDayMessage(2)">
+        <span class="day-emoji">🍫</span>
+        <span class="day-date">Feb 9</span>
+        <h3 class="day-title">Chocolate Day</h3>
+        <p class="day-hint">Tap to read ❤️</p>
+      </div>
+      
+      <div class="day-card" onclick="showDayMessage(3)">
+        <span class="day-emoji">🧸</span>
+        <span class="day-date">Feb 10</span>
+        <h3 class="day-title">Teddy Day</h3>
+        <p class="day-hint">Tap to read ❤️</p>
+      </div>
+      
+      <div class="day-card" onclick="showDayMessage(4)">
+        <span class="day-emoji">🤝</span>
+        <span class="day-date">Feb 11</span>
+        <h3 class="day-title">Promise Day</h3>
+        <p class="day-hint">Tap to read ❤️</p>
+      </div>
+      
+      <div class="day-card" onclick="showDayMessage(5)">
+        <span class="day-emoji">🤗</span>
+        <span class="day-date">Feb 12</span>
+        <h3 class="day-title">Hug Day</h3>
+        <p class="day-hint">Tap to read ❤️</p>
+      </div>
+      
+      <div class="day-card" onclick="showDayMessage(6)">
+        <span class="day-emoji">💋</span>
+        <span class="day-date">Feb 13</span>
+        <h3 class="day-title">Kiss Day</h3>
+        <p class="day-hint">Tap to read ❤️</p>
+      </div>
+      
+      <div class="day-card proposal-card" onclick="openProposal()">
+        <span class="day-emoji float">💍</span>
+        <span class="day-date">Feb 14</span>
+        <h3 class="day-title gradient-text">Valentine's Day</h3>
+        <p class="day-hint">Click to reveal ❤️</p>
+      </div>
+    </div>
+  </section>
+  <!-- Love Timeline Section -->
+  <section class="timeline-section">
+    <h2 class="section-title">Our Love Story</h2>
+    <p class="section-subtitle">A journey written in the stars ✨</p>
+    
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      
+      <div class="timeline-item left">
+        <div class="timeline-dot">✨</div>
+        <div class="timeline-content">
+          <span class="timeline-year">The Beginning</span>
+          <h3>When We First Met</h3>
+          <p>The moment our eyes met, I knew my life was about to change forever...</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item right">
+        <div class="timeline-dot">💫</div>
+        <div class="timeline-content">
+          <span class="timeline-year">Growing Closer</span>
+          <h3>Our First Conversations</h3>
+          <p>Every word you spoke made me fall deeper. Your laugh became my favorite sound.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item left">
+        <div class="timeline-dot">💕</div>
+        <div class="timeline-content">
+          <span class="timeline-year">Falling in Love</span>
+          <h3>When I Knew</h3>
+          <p>I realized you weren't just someone special - you were my destiny.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item right">
+        <div class="timeline-dot">💍</div>
+        <div class="timeline-content">
+          <span class="timeline-year">Today</span>
+          <h3>My Promise to You</h3>
+          <p>Every moment with you is a blessing. You're my today, tomorrow, and forever.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item left">
+        <div class="timeline-dot">👰‍♀️</div>
+        <div class="timeline-content">
+          <span class="timeline-year">Forever</span>
+          <h3>Our Future Together</h3>
+          <p>I dream of a life where I wake up next to you every single day as your husband.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Photo Gallery -->
+  <section class="gallery-section">
+    <h2 class="section-title">Our Beautiful Memories 📸</h2>
+    <p class="section-subtitle">Every moment with you is a treasure</p>
+    
+    <div class="gallery-grid">
+      <div class="gallery-item large">
+        <img src="photogallery/val 1.jpeg" alt="Memory 1">
+        <div class="gallery-overlay">
+          <span>❤️ Forever</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="photogallery/val 2.jpeg" alt="Memory 2">
+        <div class="gallery-overlay">
+          <span>❤️ Forever</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="photogallery/val 3.jpeg" alt="Memory 3">
+        <div class="gallery-overlay">
+          <span>❤️ Forever</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="photogallery/val 4.jpeg" alt="Memory 4">
+        <div class="gallery-overlay">
+          <span>❤️ Forever</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="photogallery/val 5.jpeg" alt="Memory 5">
+        <div class="gallery-overlay">
+          <span>❤️ Forever</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-hearts">
+      <span class="heart-icon pulse">❤️</span>
+      <span class="footer-text">Forever & Always</span>
+      <span class="heart-icon pulse">❤️</span>
+    </div>
+    <p>Made with endless love by Avhishek for Kritika</p>
+    <p class="footer-year">Valentine 2026 ❤️</p>
+  </footer>
+  <!-- Day Message Modal -->
+  <div id="dayModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal('dayModal')">&times;</button>
+      <span id="modalEmoji" class="modal-emoji">🌹</span>
+      <span id="modalDate" class="modal-date">Feb 7</span>
+      <h2 id="modalTitle" class="modal-title">Rose Day</h2>
+      <p id="modalMessage" class="modal-message">Your message here...</p>
+      <button class="love-btn" onclick="closeModal('dayModal')">❤️ Close with Love</button>
+    </div>
+  </div>
+  <!-- Proposal Modal -->
+  <div id="proposalModal" class="modal proposal-modal">
+    <div class="proposal-content">
+      <div id="proposalStage1" class="proposal-stage">
+        <div class="hearts-animation">
+          <span class="heart pulse">❤️</span>
+          <span class="heart pulse">❤️</span>
+          <span class="heart pulse">❤️</span>
+          <span class="heart pulse">❤️</span>
+          <span class="heart pulse">❤️</span>
+        </div>
+      </div>
+      
+      <div id="proposalStage2" class="proposal-stage hidden">
+        <span class="ring-emoji float">💍</span>
+        <p class="proposal-text glow">Something special is coming...</p>
+      </div>
+      
+      <div id="proposalStage3" class="proposal-stage hidden">
+        <span class="couple-emoji">🤵‍♂️ 💕 👰‍♀️</span>
+        <h2>Kritika Tiwari...</h2>
+        <p>From the moment I met you, I knew you were the one...</p>
+      </div>
+      
+      <div id="proposalStage4" class="proposal-stage hidden">
+        <span class="ring-emoji float">💍✨</span>
+        <h2 class="gradient-text big">Will You Marry Me?</h2>
+        <p>Be my forever, my wife, my everything?</p>
+        <button class="yes-btn pulse-glow" onclick="sayYes()">❤️ Yes, Forever! 💕</button>
+      </div>
+      
+      <div id="proposalStage5" class="proposal-stage hidden">
+        <div id="confetti"></div>
+        <span class="celebration-emoji">💑💍✨</span>
+        <h2 class="gold-text big">She Said Yes!</h2>
+        <p class="couple-names">Kritika ❤️ Avhishek</p>
+        <p class="forever-text">Forever Begins Now!</p>
+        <button class="close-moment-btn" onclick="closeModal('proposalModal')">Close this moment 💫</button>
+      </div>
+    </div>
+  </div>
+  <!-- Love Letter Modal -->
+  <div id="letterModal" class="modal letter-modal">
+    <div class="letter-content">
+      <button class="close-btn" onclick="closeModal('letterModal')">&times;</button>
+      <div class="envelope">
+        <div class="envelope-flap" id="envelopeFlap"></div>
+        <div class="letter-paper" id="letterPaper">
+          <span class="letter-heart pulse">❤️</span>
+          <h3 class="letter-greeting">My Dearest Kritika,</h3>
+          <p>Words could never capture what I feel for you. Every morning I wake up grateful that you exist in my world.</p>
+          <p>You are my first thought each morning and my last wish every night. Your smile lights up my darkest days, and your love gives me strength I never knew I had.</p>
+          <p>I want to spend every Valentine's Day with you, every ordinary Tuesday, every sunrise and sunset – for the rest of my life.</p>
+          <p class="letter-signature">Forever & Always Yours,<br><span class="signature-name">Avhishek 💕</span></p>
+          <button class="love-btn" onclick="closeModal('letterModal')">❤️ Close with Love</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
