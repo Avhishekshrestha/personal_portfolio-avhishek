@@ -549,6 +549,12 @@ body {
   position: relative;
   animation: slideIn 0.4s ease-out;
 }
+.day-surprise {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  animation: pulse 1s ease-in-out infinite;
+  color: var(--primary);
+}
 .close-btn {
   position: absolute;
   top: 15px;

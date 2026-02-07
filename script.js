@@ -3,13 +3,13 @@
    ============================================ */
 // Valentine Days Data
 const daysData = [
-  { emoji: "🌹", date: "Feb 7", title: "Rose Day", message: "Kritika, every rose reminds me of your beautiful smile 🌹 You are the most precious flower in my garden of life." },
-  { emoji: "💝", date: "Feb 8", title: "Propose Day", message: "From this day, I promise my heart belongs only to you. Every beat whispers your name 💝" },
-  { emoji: "🍫", date: "Feb 9", title: "Chocolate Day", message: "Life became sweeter the moment you came into my world. You are the sweetest thing in my life 🍫" },
-  { emoji: "🧸", date: "Feb 10", title: "Teddy Day", message: "If hugs were gifts, I would give you infinite ones. You're my forever cuddle partner 🧸" },
-  { emoji: "🤝", date: "Feb 11", title: "Promise Day", message: "I promise to walk beside you in every step of life. To love you, cherish you, and protect you always 🤝" },
-  { emoji: "🤗", date: "Feb 12", title: "Hug Day", message: "Your arms feel like my safest home. Every hug from you heals my soul 🤗" },
-  { emoji: "💋", date: "Feb 13", title: "Kiss Day", message: "Every moment with you feels magical. Your kiss is the seal of our eternal love 💋" }
+  { emoji: "🌹", date: "Feb 7", title: "Rose Day", message: "Kritika, every rose reminds me of your beautiful smile 🌹 You are the most precious flower in my garden of life.", surprise: "🌹🌹🌹 Roses for my Rose! 🌹🌹🌹" },
+  { emoji: "💝", date: "Feb 8", title: "Propose Day", message: "From this day, I promise my heart belongs only to you. Every beat whispers your name 💝", surprise: "💍 Will you be mine forever? 💍" },
+  { emoji: "🍫", date: "Feb 9", title: "Chocolate Day", message: "Life became sweeter the moment you came into my world. You are the sweetest thing in my life 🍫", surprise: "🍫🍫🍫 Sweet as your love! 🍫🍫🍫" },
+  { emoji: "🧸", date: "Feb 10", title: "Teddy Day", message: "If hugs were gifts, I would give you infinite ones. You're my forever cuddle partner 🧸", surprise: "🧸 Hug me tight! 🧸" },
+  { emoji: "🤝", date: "Feb 11", title: "Promise Day", message: "I promise to walk beside you in every step of life. To love you, cherish you, and protect you always 🤝", surprise: "🤝 Hand in hand forever! 🤝" },
+  { emoji: "🤗", date: "Feb 12", title: "Hug Day", message: "Your arms feel like my safest home. Every hug from you heals my soul 🤗", surprise: "🤗 Warm hugs from my heart! 🤗" },
+  { emoji: "💋", date: "Feb 13", title: "Kiss Day", message: "Every moment with you feels magical. Your kiss is the seal of our eternal love 💋", surprise: "💋💋💋 Sweet kisses for you! 💋💋💋" }
 ];
 // Music state
 let isMuted = true;
@@ -59,11 +59,15 @@ function toggleMusic() {
 // ============================================
 function showDayMessage(index) {
   const day = daysData[index];
+  const surpriseDiv = document.getElementById('daySurprise');
+  surpriseDiv.textContent = day.surprise;
+  surpriseDiv.className = 'day-surprise';
+
   document.getElementById('modalEmoji').textContent = day.emoji;
   document.getElementById('modalDate').textContent = day.date;
   document.getElementById('modalTitle').textContent = day.title;
   document.getElementById('modalMessage').textContent = day.message;
-  
+
   openModal('dayModal');
 }
 // ============================================
