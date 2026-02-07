@@ -202,6 +202,25 @@ body {
   animation: float 4s ease-in-out infinite;
 }
 
+/* Mobile adjustments for couple photo */
+@media (max-width: 768px) {
+  .couple-bg-photo {
+    right: 50%;
+    transform: translateX(50%);
+    width: 250px;
+    max-width: 70vw;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .couple-bg-photo {
+    width: 200px;
+    max-width: 80vw;
+    bottom: 20px;
+  }
+}
+
 .hero-overlay {
     z-index: 1;
   position: absolute;
@@ -779,21 +798,206 @@ body {
 /* ============================================
    RESPONSIVE ADJUSTMENTS
    ============================================ */
+/* Tablet Styles */
+@media (max-width: 768px) {
+  .music-btn, .letter-btn {
+    width: 45px;
+    height: 45px;
+  }
+
+  .music-btn {
+    top: 15px;
+    right: 15px;
+  }
+
+  .letter-btn {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .valentine-days, .timeline-section, .gallery-section {
+    padding: 60px 15px;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+  }
+
+  .day-card {
+    padding: 20px 12px;
+  }
+
+  .day-emoji {
+    font-size: 2rem;
+  }
+
+  .day-title {
+    font-size: 1.1rem;
+  }
+
+  .timeline-content {
+    padding: 15px;
+  }
+
+  .gallery-grid {
+    gap: 12px;
+  }
+
+  .footer {
+    padding: 40px 15px;
+  }
+}
+
+/* Mobile Styles */
 @media (max-width: 480px) {
   .hero-title {
     font-size: 2.5rem;
   }
-  
+
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .hero-text {
+    font-size: 1.1rem;
+  }
+
   .section-title {
     font-size: 2rem;
   }
-  
+
+  .music-btn, .letter-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .music-btn {
+    top: 10px;
+    right: 10px;
+  }
+
+  .letter-btn {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .valentine-days, .timeline-section, .gallery-section {
+    padding: 40px 10px;
+  }
+
+  .days-grid {
+    gap: 15px;
+  }
+
+  .day-card {
+    padding: 18px 10px;
+  }
+
+  .day-emoji {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .day-date {
+    font-size: 1rem;
+  }
+
+  .day-title {
+    font-size: 1rem;
+    margin: 6px 0;
+  }
+
+  .day-hint {
+    font-size: 0.85rem;
+  }
+
+  .timeline-item {
+    margin-bottom: 30px;
+  }
+
+  .timeline-content {
+    padding: 12px;
+  }
+
+  .timeline-year {
+    font-size: 1rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+
+  .gallery-item.large {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
   .modal-content,
   .proposal-content {
     padding: 30px 20px;
+    margin: 10px;
   }
-  
+
+  .modal-emoji {
+    font-size: 3rem;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .modal-message {
+    font-size: 1.1rem;
+  }
+
   .proposal-stage h2.big {
     font-size: 2rem;
+  }
+
+  .yes-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+  }
+
+  .ring-emoji, .celebration-emoji {
+    font-size: 4rem;
+  }
+
+  .couple-emoji {
+    font-size: 2.5rem;
+  }
+
+  .letter-modal .letter-content {
+    max-width: 90vw;
+  }
+
+  .envelope {
+    padding: 30px 20px;
+  }
+
+  .letter-greeting {
+    font-size: 1.5rem;
+  }
+
+  .letter-paper p {
+    font-size: 1rem;
+  }
+
+  .footer-hearts {
+    gap: 10px;
+  }
+
+  .footer-text {
+    font-size: 1.3rem;
+  }
+
+  .footer-year {
+    font-size: 1.5rem;
   }
 }
